@@ -942,3 +942,64 @@ footer {
     margin-top: 2rem;
   }
 }
+.social-links {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-links a {
+  color: #ffffff;
+  font-size: 22px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #00c6ff;
+  transform: translateY(-4px);
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .social-links {
+    gap: 16px;
+  }
+
+  .social-links a {
+    font-size: 20px;
+  }
+}
+/* Social icons below buttons */
+.hero-social {
+  margin-top: 22px;
+  display: flex;
+  gap: 22px;
+}
+
+/* Move icons visually towards photo (desktop) */
+@media (min-width: 992px) {
+  .hero-social {
+    margin-left: 120px;
+  }
+}
+
+.hero-social a {
+  font-size: 22px;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.hero-social a:hover {
+  color: #7b6cff;
+  transform: translateY(-4px);
+}
+
+/* Mobile fix */
+@media (max-width: 768px) {
+  .hero-social {
+    margin-left: 0;
+    justify-content: center;
+  }
+}
+
