@@ -287,3 +287,79 @@ document.addEventListener('click', (e) => {
         document.body.style.overflow = 'auto';
     }
 });
+/* Scroll reveal (non-breaking) */
+const revealElements = document.querySelectorAll(
+  "section, .project, .project-card"
+);
+
+revealElements.forEach(el => {
+  el.style.opacity = 0;
+  el.style.transform = "translateY(30px)";
+});
+
+window.addEventListener("scroll", () => {
+  revealElements.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if (top < window.innerHeight - 100) {
+      el.style.opacity = 1;
+      el.style.transform = "translateY(0)";
+      el.style.transition = "all 0.8s ease";
+    }
+  });
+});
+document.querySelectorAll(".btn, button").forEach(btn => {
+  btn.addEventListener("mousemove", e => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+  });
+
+  btn.addEventListener("mouseleave", () => {
+    btn.style.transform = "translate(0,0)";
+  });
+});
+document.querySelectorAll(".glass-card, .project-card, .review-card")
+.forEach(card => {
+  card.addEventListener("mousemove", e => {
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty("--x", `${e.clientX - rect.left}px`);
+    card.style.setProperty("--y", `${e.clientY - rect.top}px`);
+  });
+});
+const heroImg = document.querySelector(".hero-image img");
+
+window.addEventListener("mousemove", e => {
+  const x = (window.innerWidth / 2 - e.clientX) / 40;
+  const y = (window.innerHeight / 2 - e.clientY) / 40;
+
+  heroImg.style.transform = `translate(${x}px, ${y}px)`;
+});
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const height = document.body.scrollHeight - window.innerHeight;
+  const percent = (scrollTop / height) * 100;
+  document.documentElement.style.setProperty("--scroll", percent + "%");
+});
+document.querySelectorAll(".project-card").forEach(card => {
+  card.addEventListener("click", () => {
+    card.classList.toggle("active");
+  });
+});
+let offset = 0;
+setInterval(() => {
+  const track = document.querySelector(".reviews-track");
+  offset -= 300;
+  if (Math.abs(offset) > track.scrollWidth / 2) offset = 0;
+  track.style.transform = `translateX(${offset}px)`;
+}, 3000);
+const cursor = document.querySelector(".cursor");
+
+if (cursor) {
+  window.addEventListener("mousemove", e => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+  });
+}
+

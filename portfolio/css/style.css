@@ -1002,4 +1002,151 @@ footer {
     justify-content: center;
   }
 }
+/* ===== UI/UX ENHANCEMENTS (SAFE ADDITIONS) ===== */
+
+/* Hero animation */
+.hero,
+#home {
+  animation: fadeUp 1s ease forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Better CTA buttons */
+.hero a,
+#home a {
+  transition: all 0.3s ease;
+}
+
+.hero a:hover,
+#home a:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+/* Navbar UX */
+nav a {
+  position: relative;
+}
+
+/* underline animation */
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+/* Project card enhancement */
+.project,
+.project-box,
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project:hover,
+.project-box:hover,
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* Project image zoom */
+.project img,
+.project-card img {
+  transition: transform 0.4s ease;
+}
+
+.project:hover img,
+.project-card:hover img {
+  transform: scale(1.05);
+}
+button,
+.btn,
+input[type="submit"] {
+  transition: all 0.3s ease;
+}
+
+button:hover,
+.btn:hover,
+input[type="submit"]:hover {
+  transform: scale(1.05);
+}
+@media (max-width: 768px) {
+  section {
+    padding: 60px 20px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+}
+.glass-card,
+.project-card,
+.review-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before,
+.project-card::before,
+.review-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--x, 50%) var(--y, 50%),
+    rgba(0, 255, 255, 0.15),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.glass-card:hover::before,
+.project-card:hover::before,
+.review-card:hover::before {
+  opacity: 1;
+}
+.scroll-indicator::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 4px;
+  height: var(--scroll, 0%);
+  background: linear-gradient(to top, cyan, lime);
+  border-radius: 10px;
+}
+.skill-icon,
+.tool-card img {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+.project-card.active {
+  transform: scale(1.05);
+  z-index: 10;
+}
 
