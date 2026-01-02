@@ -349,22 +349,29 @@ section {
     gap: 4rem;
     align-items: center;
 }
-
 .about-img img {
-    width: 70%;
-    border-radius: 50%;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 30px rgba(100, 100, 100, 0.3), 0 0 60px rgba(80, 80, 80, 0.2);
-    transition: var(--transition);
-    display: block;
-    margin: -2rem auto 0;
-    background: linear-gradient(135deg, rgba(108, 99, 255, 0.1), rgba(47, 46, 65, 0.1));
-    padding: 0;
-    animation: shadowPulse 1.5s ease-in-out infinite;
+  width: 420px;              /* BIGGER */
+  height: 480px;             /* RECTANGLE / SQUARE-ISH */
+  object-fit: cover;
+  border-radius: 38px;       /* Modern soft square */
+  display: block;
+  margin: 0 auto;
+
+  /* Glass + neon look */
+  background: linear-gradient(135deg, rgba(108,99,255,0.15), rgba(0,210,255,0.15));
+  box-shadow:
+    0 20px 50px rgba(58, 35, 35, 0.45),
+    0 0 40px rgba(6, 178, 32, 0.35);
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.about-img img:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow:
+    0 30px 70px rgba(42, 226, 17, 0.6),
+    0 0 60px rgba(21, 13, 167, 0.6);
 }
 
-.about-img img:hover {
-    transform: scale(1.02);
-}
 
 .about-text h3 {
     font-size: 1.8rem;
@@ -790,7 +797,7 @@ footer {
   }
 
   .about-img img {
-    width: 65%;
+    width: 85%;
     max-width: 250px;
   }
 
@@ -1149,4 +1156,60 @@ input[type="submit"]:hover {
   transform: scale(1.05);
   z-index: 10;
 }
+/* Magnetic card base */
+.project-card,
+.skill-card,
+.glass-card {
+  will-change: transform;
+  transition: transform 0.15s ease-out;
+}
+.project-card:hover,
+.skill-card:hover,
+.glass-card:hover {
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.2),
+    0 0 30px rgba(0, 255, 255, 0.4);
+}
+@media (max-width: 768px) {
+  .about-img img {
+    width: 260px;
+    height: 320px;
+  }
+}
+/* ===== RIPPLE EFFECT ===== */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(0, 255, 255, 0.35);
+  transform: scale(0);
+  animation: ripple-effect 600ms linear;
+  pointer-events: none;
+}
+
+@keyframes ripple-effect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Ensure cards allow ripple */
+.project-card,
+.skill-card,
+.glass-card,
+.review-card {
+  position: relative;
+  overflow: hidden;
+}
+.typing-caret::after {
+  content: "|";
+  margin-left: 4px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
 

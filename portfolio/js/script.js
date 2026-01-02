@@ -362,4 +362,109 @@ if (cursor) {
     cursor.style.top = e.clientY + "px";
   });
 }
+const magneticCards = document.querySelectorAll(
+  ".project-card, .skill-card, .glass-card"
+);
+
+magneticCards.forEach(card => {
+  card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
+
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    card.style.transform = `
+      translate(${x * 0.12}px, ${y * 0.12}px)
+      rotateX(${-(y / 10)}deg)
+      rotateY(${x / 10}deg)
+    `;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "translate(0,0) rotateX(0) rotateY(0)";
+  });
+});
+const aboutImg = document.querySelector(".about-img img");
+
+if (aboutImg) {
+  aboutImg.addEventListener("mousemove", (e) => {
+    const rect = aboutImg.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    aboutImg.style.transform = `
+      perspective(600px)
+      rotateX(${-(y / 15)}deg)
+      rotateY(${x / 15}deg)
+      scale(1.04)
+    `;
+  });
+
+  aboutImg.addEventListener("mouseleave", () => {
+    aboutImg.style.transform = "perspective(600px) rotateX(0) rotateY(0) scale(1)";
+  });
+}
+const rippleCards = document.querySelectorAll(
+  ".project-card, .skill-card, .glass-card, .review-card"
+);
+
+rippleCards.forEach(card => {
+  card.addEventListener("click", function (e) {
+    const ripple = document.createElement("span");
+    ripple.classList.add("ripple");
+
+    const rect = card.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+
+    ripple.style.width = ripple.style.height = size + "px";
+    ripple.style.left = e.clientX - rect.left - size / 2 + "px";
+    ripple.style.top = e.clientY - rect.top - size / 2 + "px";
+
+    card.appendChild(ripple);
+
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  });
+});
+function typeText(element, text, speed = 120) {
+  element.textContent = "";
+  let index = 0;
+
+  function typing() {
+    if (index < text.length) {
+      element.textContent += text.charAt(index);
+      index++;
+      setTimeout(typing, speed);
+    } else {
+      element.classList.add("typing-caret");
+    }
+  }
+
+  typing();
+}
+
+/* =========================
+   HERO NAME (KRISH)
+========================= */
+const heroName = document.getElementById("typing-name");
+if (heroName) {
+  typeText(heroName, "KRISH", 150);
+}
+
+/* =========================
+   ALL HEADING FIRST WORDS
+========================= */
+const typingWords = document.querySelectorAll(
+  ".section-title span, .typing-word"
+);
+
+typingWords.forEach((word, i) => {
+  const text = word.textContent;
+  word.textContent = "";
+
+  setTimeout(() => {
+    typeText(word, text, 100);
+  }, 400 + i * 300); // stagger effect
+});
 
