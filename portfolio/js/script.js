@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
         attributeFilter: ['data-theme']
     });
     const textElement = document.querySelector('.typewriter');
-    const words = ["Cloud Solutions", "Web Applications", "Scalable Systems", "Secure Deployments"];
+    const words = ["Cloud Computing Engineer"];
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function type() {
         const currentWord = words[wordIndex];
-        
+
         if (isDeleting) {
             textElement.textContent = currentWord.substring(0, charIndex - 1);
             charIndex--;
@@ -287,8 +287,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(type, typeSpeed);
     }
-    
+
     if (textElement) type();
+
+    // Typing effect for name "Krish Sharma"
+    const nameElement = document.querySelector('.typing-name');
+    const nameWords = ["Krish Sharma"];
+    let nameWordIndex = 0;
+    let nameCharIndex = 0;
+    let nameIsDeleting = false;
+    let nameTypeSpeed = 200;
+
+    function typeName() {
+        const currentNameWord = nameWords[nameWordIndex];
+
+        if (nameIsDeleting) {
+            nameElement.textContent = currentNameWord.substring(0, nameCharIndex - 1);
+            nameCharIndex--;
+            nameTypeSpeed = 100;
+        } else {
+            nameElement.textContent = currentNameWord.substring(0, nameCharIndex + 1);
+            nameCharIndex++;
+            nameTypeSpeed = 200;
+        }
+
+        if (!nameIsDeleting && nameCharIndex === currentNameWord.length) {
+            nameIsDeleting = true;
+            nameTypeSpeed = 2000; // Pause at end
+        } else if (nameIsDeleting && nameCharIndex === 0) {
+            nameIsDeleting = false;
+            nameWordIndex = (nameWordIndex + 1) % nameWords.length;
+            nameTypeSpeed = 500;
+        }
+
+        setTimeout(typeName, nameTypeSpeed);
+    }
+
+    // Start typing the name after a short delay
+    if (nameElement) {
+        setTimeout(typeName, 1000);
+    }
 
     // 2. Mobile Menu Toggle
     const hamburger = document.querySelector('.hamburger');

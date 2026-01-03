@@ -1134,6 +1134,23 @@ footer {
   color: #6c63ff;
 }
 
+.typing-name {
+  position: relative;
+  color: #6c63ff;
+  font-weight: 800;
+}
+
+.typing-name::after {
+  content: '|';
+  animation: blink 1s infinite;
+  color: #6c63ff;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
 .hero-subtitle {
   margin: 1.5rem 0;
   font-size: 1.1rem;
