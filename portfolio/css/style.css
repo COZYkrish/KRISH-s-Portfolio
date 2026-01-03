@@ -1495,4 +1495,114 @@ input[type="submit"]:hover {
     animation-duration: 35s;
   }
 }
+/* =========================
+   INTERACTIVE TECH MARQUEE
+========================= */
 
+.tech-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  margin-top: 3rem;
+}
+
+.tech-marquee.second {
+  margin-top: 1.8rem;
+}
+
+.tech-track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: techScroll 30s linear infinite;
+}
+
+.tech-track.reverse {
+  animation-direction: reverse;
+  animation-duration: 38s;
+  opacity: 0.9;
+}
+
+/* Tech badge */
+.tech {
+  padding: 10px 18px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-radius: 6px;
+  color: #fff;
+  white-space: nowrap;
+  cursor: default;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.tech:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+
+/* Animation */
+@keyframes techScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Pause on hover */
+/* .tech-marquee:hover .tech-track {
+  animation-play-state: paused;
+} */
+
+/* Fade edges */
+.tech-marquee::before,
+.tech-marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  z-index: 3;
+}
+
+.tech-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-color), transparent);
+}
+
+.tech-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-color), transparent);
+}
+
+/* =========================
+   TECH COLORS
+========================= */
+
+.html { background: #e34c26; }
+.java { background: #f89820; }
+.js { background: #f7df1e; color: #000; }
+.cpp { background: #00599c; }
+.css { background: #1572b6; }
+.python { background: #3776ab; }
+.powershell { background: #5391fe; }
+.terminal { background: #222; }
+
+.cloudflare { background: #f38020; }
+.netlify { background: #00c7b7; }
+.anaconda { background: #44a833; }
+.spring { background: #6db33f; }
+.react { background: #20232a; }
+.flask { background: #000; }
+.angular { background: #dd0031; }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .tech {
+    font-size: 0.75rem;
+    padding: 8px 14px;
+  }
+
+  .tech-track {
+    animation-duration: 45s;
+  }
+}
