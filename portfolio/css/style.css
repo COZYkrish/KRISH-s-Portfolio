@@ -1,3 +1,4 @@
+
 :root {
     --primary-color: #222138;
     --secondary-color: #41419c;
@@ -321,9 +322,19 @@ nav {
 }
 
 /* Sections General */
-section {
-    padding: 5rem 0;
+section::before {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-bottom: 4rem;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(108,99,255,.5),
+    transparent
+  );
 }
+
 
 .section-title {
     text-align: center;
@@ -929,6 +940,30 @@ footer {
   box-shadow: 0 0 60px rgba(108, 99, 255, 0.6);
   animation: heroShadowPulse 2s ease-in-out infinite;
 }
+.hero-image {
+  position: relative;
+}
+
+.hero-image::after {
+  content: "";
+  position: absolute;
+  inset: -25px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(108,99,255,.35), transparent 60%);
+  filter: blur(25px);
+  z-index: -1;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.hero-image {
+  animation: float 6s ease-in-out infinite;
+}
+
 
 .hero-image img {
   width: 100%;
@@ -1184,6 +1219,20 @@ input[type="submit"]:hover {
     0 15px 40px rgba(0,0,0,0.2),
     0 0 30px rgba(0, 255, 255, 0.4);
 }
+.project-card,
+.skill-card {
+  box-shadow:
+    0 10px 30px rgba(32, 11, 11, 0.15),
+    inset 0 0 0 1px rgba(255,255,255,.05);
+}
+
+.project-card:hover,
+.skill-card:hover {
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.25),
+    0 0 35px rgba(108,99,255,.35);
+}
+
 @media (max-width: 768px) {
   .about-img img {
     width: 260px;
