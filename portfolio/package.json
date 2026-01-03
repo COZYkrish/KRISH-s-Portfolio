@@ -1,0 +1,14 @@
+{
+  "name": "krish-portfolio",
+  "version": "1.0.0",
+  "description": "Krish Sharma's Cloud Computing Portfolio",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "build": "echo 'Static site - no build needed'",
+    "deploy": "echo 'Ready for static hosting deployment'"
+  },
+  "keywords": ["portfolio", "cloud-computing", "web-development"],
+  "author": "Krish Sharma",
+  "license": "MIT"
+}
