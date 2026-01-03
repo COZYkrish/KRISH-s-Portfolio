@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krish Sharma | Cloud Computing Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Background Animation Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navigation -->
+    <header id="navbar">
+        <nav class="container">
+            <div class="logo"><span class="krish-name">CLOUD</span> Portfolio<span class="dot">.</span></div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="#projects">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </nav>
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="#projects">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="hero-wrapper container">
+
+    <!-- LEFT CONTENT -->
+<!-- LEFT CONTENT -->
+<div class="hero-left">
+  <p class="hero-welcome">Welcome to my portfolio</p>
+
+  <h1 class="hero-title">
+    Hello, my name’s <span class="typing-name"></span>.
+  </h1>
+
+  <p class="hero-subtitle">
+    I’m a BCA student & aspiring <br>
+    <strong><span class="typewriter"></span></strong>.
+  </p>
+
+  <div class="hero-buttons">
+    <a href="https://drive.google.com/file/d/YOUR_RESUME_ID/view?usp=sharing" class="btn primary" target="_blank">
+      Download CV
+    </a>
+    <a href="#projects" class="btn secondary">
+      See my work →
+    </a>
+  </div>
+
+  <!-- ✅ SOCIAL ICONS (below buttons) -->
+  <div class="hero-social">
+    <a href="https://github.com/COZYkrish" target="_blank" aria-label="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/krish-sharma-710927380/" target="_blank" aria-label="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+    <a href="https://www.instagram.com/wtf.kid_ish/" target="_blank" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
+</div>
+
+  
+
+        
+
+    <!-- RIGHT IMAGE -->
+    <div class="hero-right">
+      <div class="hero-image">
+        <img src="images/krishprofessional-photo.jpg" alt="Krish Sharma">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title" data-reveal="bottom"><span class="about-red">About</span> Me</h2>
+            <div class="about-content">
+                <div class="about-img" data-reveal="left">
+                    <img src="images/krish photo 2.jpg" alt="Profile Picture">
+                </div>
+                <div class="about-text" data-reveal="right">
+                    <h3>BCA Student | Aspiring Cloud Computing Engineer</h3>
+                    <p>I’m a BCA student passionate about cloud computing and modern application deployment. I enjoy learning how scalable, secure, and efficient systems are built on the cloud and turning theoretical knowledge into real-world solutions.</p>
+                    <p>My focus is on building cloud-ready applications, understanding virtualization and deployment models, and continuously improving my technical and problem-solving skills.</p>
+
+                    <div class="stats">
+                        <div class="stat-item">
+                            <h4>BCA</h4>
+                            <p>Student</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Cloud</h4>
+                            <p>Enthusiast</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>DevOps</h4>
+                            <p>Learner</p>
+                        </div>
+                    </div>
+
+                    <!-- Animated Statistics -->
+                    <div class="animated-stats" data-reveal="bottom">
+                        <div class="stat-counter">
+                            <div class="counter-number" data-target="14">0</div>
+                            <div class="counter-label">Skills Mastered</div>
+                        </div>
+                        <div class="stat-counter">
+                            <div class="counter-number" data-target="7">0</div>
+                            <div class="counter-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-counter">
+                            <div class="counter-number" data-target="397">0</div>
+                            <div class="counter-label">Hours Coded</div>
+                        </div>
+                        <div class="stat-counter">
+                            <div class="counter-number" data-target="1">0</div>
+                            <div class="counter-label">Certifications</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Timeline Section -->
+    <section id="timeline" class="timeline-section">
+        <div class="container">
+            <h2 class="section-title" data-reveal="bottom"><span class="featured-red">My</span> Journey</h2>
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                <div class="timeline-item" data-reveal="left">
+                    <div class="timeline-content">
+                        <div class="timeline-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="timeline-text">
+                            <h3>Bachelor of Computer Applications</h3>
+                            <span class="timeline-date">2024 - Present</span>
+                            <p>Currently pursuing BCA with focus on cloud computing, web development, and software engineering principles.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item right" data-reveal="right">
+                    <div class="timeline-content">
+                        <div class="timeline-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="timeline-text">
+                            <h3>Cloud Computing Journey</h3>
+                            <span class="timeline-date">2025 - Present</span>
+                            <p>Deep dive into AWS, Azure, and cloud architecture. Learning deployment strategies, serverless computing, and DevOps practices.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-reveal="left">
+                    <div class="timeline-content">
+                        <div class="timeline-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="timeline-text">
+                            <h3>Programming Foundation</h3>
+                            <span class="timeline-date">2024 - 2025</span>
+                            <p>Mastered Python, Java, and web technologies. Built foundation in algorithms, data structures, and software development.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item right" data-reveal="right">
+                    <div class="timeline-content">
+                        <div class="timeline-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="timeline-text">
+                            <h3>Future Goals</h3>
+                            <span class="timeline-date">2024 - Future</span>
+                            <p>Aiming for cloud certifications, advanced DevOps skills, and contributing to open-source projects in cloud computing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <!-- <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title" data-reveal="bottom"><span class="tech-red">Tech Stack</span> & Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card" data-reveal="bottom">
+                    <i class="fas fa-code"></i>
+                    <h3>Programming</h3>
+                    <p>Python, Java, C++</p>
+                </div>
+                <div class="skill-card" data-reveal="bottom" data-delay="100">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Cloud Computing</h3>
+                    <p>AWS, Azure, GCP, IaaS, PaaS, SaaS</p>
+                </div>
+                <div class="skill-card" data-reveal="bottom" data-delay="200">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Web Development</h3>
+                    <p>HTML, CSS, JavaScript, React</p>
+                </div>
+                <div class="skill-card" data-reveal="bottom" data-delay="300">
+                    <i class="fas fa-database"></i>
+                    <h3>Databases</h3>
+                    <p>MySQL, DBMS Fundamentals</p>
+                </div>
+                <div class="skill-card" data-reveal="bottom" data-delay="400">
+                    <i class="fas fa-server"></i>
+                    <h3>Systems & Tools</h3>
+                    <p>Linux Basics, OS Concepts, Networking</p>
+                </div>
+                <div class="skill-card" data-reveal="bottom" data-delay="500">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Currently Learning</h3>
+                    <p>VMs, Containers, Cloud Security, Deployment</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+<section id="skills" class="skills">
+  <div class="container">
+    <h2 class="section-title">
+      <span class="tech-red">Tech Stack</span> & Skills
+    </h2>
+
+    <!-- LOOP 1 -->
+    <div class="tech-marquee">
+      <div class="tech-track forward">
+
+        <span class="tech html">HTML5</span>
+        <span class="tech java">Java</span>
+        <span class="tech js">JavaScript</span>
+        <span class="tech cpp">C++</span>
+        <span class="tech css">CSS3</span>
+        <span class="tech python">Python</span>
+        <span class="tech powershell">PowerShell</span>
+        <span class="tech terminal">Windows Terminal</span>
+
+        <span class="tech html">HTML5</span>
+        <span class="tech java">Java</span>
+        <span class="tech js">JavaScript</span>
+        <span class="tech cpp">C++</span>
+        <span class="tech css">CSS3</span>
+        <span class="tech python">Python</span>
+        <span class="tech powershell">PowerShell</span>
+        <span class="tech terminal">Windows Terminal</span>
+
+      </div>
+    </div>
+
+    <!-- LOOP 2 (REVERSE) -->
+    <div class="tech-marquee second">
+      <div class="tech-track reverse">
+
+        <span class="tech cloudflare">Cloudflare</span>
+        <span class="tech netlify">Netlify</span>
+        <span class="tech anaconda">Anaconda</span>
+        <span class="tech spring">Spring</span>
+        <span class="tech react">React</span>
+        <span class="tech flask">Flask</span>
+        <span class="tech angular">Angular</span>
+
+        <span class="tech cloudflare">Cloudflare</span>
+        <span class="tech netlify">Netlify</span>
+        <span class="tech anaconda">Anaconda</span>
+        <span class="tech spring">Spring</span>
+        <span class="tech react">React</span>
+        <span class="tech flask">Flask</span>
+        <span class="tech angular">Angular</span>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="tech-details-wrapper">
+  <a href="skills.html" class="rainbow-btn">
+    <span>View All Skills</span>
+  </a>
+</div>
+
+</section>
+
+    <!-- Skills Details Section -->
+    <section id="skills-details" class="skills-details">
+        <div class="container">
+            <h2 class="section-title" data-reveal="bottom"><span class="tech-red">Skills</span> Details</h2>
+            <p class="skills-intro" data-reveal="bottom" data-delay="100">Explore my technical expertise with interactive code demonstrations</p>
+
+            <div class="skills-grid-detailed">
+                <!-- Python Card -->
+                <div class="skill-detail-card" data-skill="python" data-reveal="bottom">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Python</h3>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                    </div>
+                    <div class="mac-interface">
+                        <div class="mac-header">
+                            <div class="mac-buttons">
+                                <span class="mac-btn red"></span>
+                                <span class="mac-btn yellow"></span>
+                                <span class="mac-btn green"></span>
+                            </div>
+                            <div class="mac-title">python_demo.py</div>
+                        </div>
+                        <div class="code-window">
+                            <pre class="code-content" data-code="python">
+<span class="code-line"><span class="code-keyword">def</span> <span class="code-function">fibonacci</span>(n):</span>
+<span class="code-line">    <span class="code-keyword">if</span> n <= 1:</span>
+<span class="code-line">        <span class="code-keyword">return</span> n</span>
+<span class="code-line">    <span class="code-keyword">return</span> fibonacci(n-1) + fibonacci(n-2)</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-comment"># Calculate first 10 fibonacci numbers</span></span>
+<span class="code-line"><span class="code-keyword">for</span> i <span class="code-keyword">in</span> <span class="code-function">range</span>(10):</span>
+<span class="code-line">    <span class="code-function">print</span>(f"F({i}) = {fibonacci(i)}")</span>
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Proficient in Python for data analysis, automation, and backend development.</p>
+                    </div>
+                </div>
+
+                <!-- JavaScript Card -->
+                <div class="skill-detail-card" data-skill="javascript" data-reveal="bottom" data-delay="100">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>JavaScript</h3>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                    </div>
+                    <div class="mac-interface">
+                        <div class="mac-header">
+                            <div class="mac-buttons">
+                                <span class="mac-btn red"></span>
+                                <span class="mac-btn yellow"></span>
+                                <span class="mac-btn green"></span>
+                            </div>
+                            <div class="mac-title">react_component.jsx</div>
+                        </div>
+                        <div class="code-window">
+                            <pre class="code-content" data-code="javascript">
+<span class="code-line"><span class="code-keyword">import</span> React, { useState, useEffect } <span class="code-keyword">from</span> <span class="code-string">'react'</span>;</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-keyword">const</span> <span class="code-function">Counter</span> = () => {</span>
+<span class="code-line">  <span class="code-keyword">const</span> [count, setCount] = <span class="code-function">useState</span>(0);</span>
+<span class="code-line"></span>
+<span class="code-line">  <span class="code-keyword">return</span> (</span>
+<span class="code-line">    &lt;<span class="code-tag">div</span> <span class="code-attr">className</span>=<span class="code-string">"counter"</span>&gt;</span>
+<span class="code-line">      &lt;<span class="code-tag">h2</span>&gt;Count: {count}&lt;/<span class="code-tag">h2</span>&gt;</span>
+<span class="code-line">      &lt;<span class="code-tag">button</span> <span class="code-attr">onClick</span>={() => <span class="code-function">setCount</span>(count + 1)}&gt;</span>
+<span class="code-line">        Increment</span>
+<span class="code-line">      &lt;/<span class="code-tag">button</span>&gt;</span>
+<span class="code-line">    &lt;/<span class="code-tag">div</span>&gt;</span>
+<span class="code-line">  );</span>
+<span class="code-line">};</span>
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Expert in modern JavaScript, React, and frontend development.</p>
+                    </div>
+                </div>
+
+                <!-- Java Card -->
+                <div class="skill-detail-card" data-skill="java" data-reveal="bottom" data-delay="200">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-java"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Java</h3>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                    </div>
+                    <div class="mac-interface">
+                        <div class="mac-header">
+                            <div class="mac-buttons">
+                                <span class="mac-btn red"></span>
+                                <span class="mac-btn yellow"></span>
+                                <span class="mac-btn green"></span>
+                            </div>
+                            <div class="mac-title">HelloWorld.java</div>
+                        </div>
+                        <div class="code-window">
+                            <pre class="code-content" data-code="java">
+<span class="code-line"><span class="code-keyword">public class</span> <span class="code-class">HelloWorld</span> {</span>
+<span class="code-line">    <span class="code-keyword">public static void</span> <span class="code-function">main</span>(String[] args) {</span>
+<span class="code-line">        <span class="code-class">System</span>.out.println(<span class="code-string">"Hello, World!"</span>);</span>
+<span class="code-line">        </span>
+<span class="code-line">        <span class="code-comment">// Object-oriented programming</span></span>
+<span class="code-line">        <span class="code-class">Person</span> person = <span class="code-keyword">new</span> <span class="code-class">Person</span>(<span class="code-string">"John"</span>, 25);</span>
+<span class="code-line">        person.greet();</span>
+<span class="code-line">    }</span>
+<span class="code-line">}</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-keyword">class</span> <span class="code-class">Person</span> {</span>
+<span class="code-line">    <span class="code-keyword">private</span> String name;</span>
+<span class="code-line">    <span class="code-keyword">private int</span> age;</span>
+<span class="code-line">    </span>
+<span class="code-line">    <span class="code-keyword">public</span> <span class="code-function">Person</span>(String name, <span class="code-keyword">int</span> age) {</span>
+<span class="code-line">        <span class="code-keyword">this</span>.name = name;</span>
+<span class="code-line">        <span class="code-keyword">this</span>.age = age;</span>
+<span class="code-line">    }</span>
+<span class="code-line">}</span>
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Strong foundation in Java, OOP principles, and enterprise development.</p>
+                    </div>
+                </div>
+
+                <!-- HTML/CSS Card -->
+                <div class="skill-detail-card" data-skill="html" data-reveal="bottom" data-delay="300">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>HTML & CSS</h3>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                    </div>
+                    <div class="mac-interface">
+                        <div class="mac-header">
+                            <div class="mac-buttons">
+                                <span class="mac-btn red"></span>
+                                <span class="mac-btn yellow"></span>
+                                <span class="mac-btn green"></span>
+                            </div>
+                            <div class="mac-title">responsive_layout.html</div>
+                        </div>
+                        <div class="code-window">
+                            <pre class="code-content" data-code="html">
+<span class="code-line">&lt;<span class="code-tag">div</span> <span class="code-attr">class</span>=<span class="code-string">"responsive-grid"</span>&gt;</span>
+<span class="code-line">  &lt;<span class="code-tag">div</span> <span class="code-attr">class</span>=<span class="code-string">"card"</span>&gt;</span>
+<span class="code-line">    &lt;<span class="code-tag">h3</span>&gt;Modern Web Design&lt;/<span class="code-tag">h3</span>&gt;</span>
+<span class="code-line">    &lt;<span class="code-tag">p</span>&gt;Responsive and accessible&lt;/<span class="code-tag">p</span>&gt;</span>
+<span class="code-line">  &lt;/<span class="code-tag">div</span>&gt;</span>
+<span class="code-line">&lt;/<span class="code-tag">div</span>&gt;</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-comment">/* CSS Grid & Flexbox */</span></span>
+<span class="code-line">.responsive-grid {</span>
+<span class="code-line">  display: grid;</span>
+<span class="code-line">  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));</span>
+<span class="code-line">  gap: 2rem;</span>
+<span class="code-line">}</span>
+<span class="code-line"></span>
+<span class="code-line">.card {</span>
+<span class="code-line">  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);</span>
+<span class="code-line">  border-radius: 15px;</span>
+<span class="code-line">  padding: 2rem;</span>
+<span class="code-line">  box-shadow: 0 10px 30px rgba(0,0,0,0.2);</span>
+<span class="code-line">}</span>
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Master of modern HTML5, CSS3, responsive design, and web standards.</p>
+                    </div>
+                </div>
+
+                <!-- React Card -->
+                <div class="skill-detail-card" data-skill="react" data-reveal="bottom" data-delay="400">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>React</h3>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                    </div>
+                    <div class="mac-interface">
+                        <div class="mac-header">
+                            <div class="mac-buttons">
+                                <span class="mac-btn red"></span>
+                                <span class="mac-btn yellow"></span>
+                                <span class="mac-btn green"></span>
+                            </div>
+                            <div class="mac-title">useEffect_demo.jsx</div>
+                        </div>
+                        <div class="code-window">
+                            <pre class="code-content" data-code="react">
+<span class="code-line"><span class="code-keyword">import</span> { useState, useEffect } <span class="code-keyword">from</span> <span class="code-string">'react'</span>;</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-keyword">function</span> <span class="code-function">DataFetcher</span>() {</span>
+<span class="code-line">  <span class="code-keyword">const</span> [data, setData] = <span class="code-function">useState</span>(null);</span>
+<span class="code-line">  <span class="code-keyword">const</span> [loading, setLoading] = <span class="code-function">useState</span>(true);</span>
+<span class="code-line"></span>
+<span class="code-line">  <span class="code-function">useEffect</span>(() => {</span>
+<span class="code-line">    <span class="code-function">fetchData</span>()</span>
+<span class="code-line">      .then(result => {</span>
+<span class="code-line">        setData(result);</span>
+<span class="code-line">        setLoading(false);</span>
+<span class="code-line">      });</span>
+<span class="code-line">  }, []);</span>
+<span class="code-line"></span>
+<span class="code-line">  <span class="code-keyword">if</span> (loading) <span class="code-keyword">return</span> &lt;<span class="code-tag">div</span>&gt;Loading...&lt;/<span class="code-tag">div</span>&gt;;</span>
+<span class="code-line"></span>
+<span class="code-line">  <span class="code-keyword">return</span> (</span>
+<span class="code-line">    &lt;<span class="code-tag">div</span>&gt;</span>
+<span class="code-line">      &lt;<span class="code-tag">h2</span>&gt;{data.title}&lt;/<span class="code-tag">h2</span>&gt;</span>
+<span class="code-line">      &lt;<span class="code-tag">p</span>&gt;{data.description}&lt;/<span class="code-tag">p</span>&gt;</span>
+<span class="code-line">    &lt;/<span class="code-tag">div</span>&gt;</span>
+<span class="code-line">  );</span>
+<span class="code-line">}</span>
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Building dynamic user interfaces with React hooks and modern patterns.</p>
+                    </div>
+                </div>
+
+                <!-- Cloud Computing Card -->
+                <div class="skill-detail-card" data-skill="cloud" data-reveal="bottom" data-delay="500">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Cloud Computing</h3>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                    </div>
+                    <div class="mac-interface">
+                        <div class="mac-header">
+                            <div class="mac-buttons">
+                                <span class="mac-btn red"></span>
+                                <span class="mac-btn yellow"></span>
+                                <span class="mac-btn green"></span>
+                            </div>
+                            <div class="mac-title">aws_deployment.sh</div>
+                        </div>
+                        <div class="code-window">
+                            <pre class="code-content" data-code="bash">
+<span class="code-line"><span class="code-comment">#!/bin/bash</span></span>
+<span class="code-line"><span class="code-comment"># AWS EC2 Deployment Script</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-function">echo</span> <span class="code-string">"🚀 Starting AWS deployment..."</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-comment"># Create EC2 instance</span></span>
+<span class="code-line">aws ec2 run-instances \</span>
+<span class="code-line">  --image-id ami-12345678 \</span>
+<span class="code-line">  --count 1 \</span>
+<span class="code-line">  --instance-type t2.micro \</span>
+<span class="code-line">  --key-name my-key-pair \</span>
+<span class="code-line">  --security-groups web-sg</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-comment"># Configure auto-scaling</span></span>
+<span class="code-line">aws autoscaling create-auto-scaling-group \</span>
+<span class="code-line">  --auto-scaling-group-name my-asg \</span>
+<span class="code-line">  --launch-template LaunchTemplateId=lt-123456 \</span>
+<span class="code-line">  --min-size 1 \</span>
+<span class="code-line">  --max-size 5 \</span>
+<span class="code-line">  --desired-capacity 2</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-function">echo</span> <span class="code-string">"✅ Deployment completed!"</span></span>
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Experience with AWS, Azure, and cloud infrastructure deployment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title" data-reveal="bottom"><span class="featured-red">Featured</span> Projects</h2>
+
+            <div class="project-filter" data-reveal="bottom">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="cloud">Cloud</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="python">Python</button>
+            </div>
+
+            <div class="project-grid">
+                <!-- Project 1 -->
+                <div class="project-card" data-category="cloud" data-reveal="bottom">
+                    <div class="project-img">
+                        <img src="https://via.placeholder.com/600x400" alt="Cloud Project">
+                        <div class="overlay">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Cloud Deployment</h3>
+                        <p>Deploying a web app on AWS/Azure.</p>
+                        <button class="btn-sm" onclick="openModal('modal1')">Details</button>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card" data-category="web" data-reveal="bottom" data-delay="100">
+                    <div class="project-img">
+                        <img src="https://via.placeholder.com/600x400" alt="Web Project">
+                        <div class="overlay">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Portfolio Website</h3>
+                        <p>A personal portfolio built with HTML, CSS, JS.</p>
+                        <button class="btn-sm" onclick="openModal('modal2')">Details</button>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card" data-category="python" data-reveal="bottom" data-delay="200">
+                    <div class="project-img">
+                        <img src="https://via.placeholder.com/600x400" alt="Python Project">
+                        <div class="overlay">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Automation Script</h3>
+                        <p>Python script for automating daily tasks.</p>
+                        <button class="btn-sm" onclick="openModal('modal3')">Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Cloud Deployment</h2>
+            <img src="https://via.placeholder.com/800x500" alt="Cloud Project">
+            <p><strong>Tech Stack:</strong> AWS/Azure, Docker, Linux</p>
+            <p>Demonstration of deploying a scalable web application on a cloud platform using virtual machines and containers.</p>
+            <div class="modal-links">
+                <a href="#" class="btn primary">View Project</a>
+                <a href="#" class="btn secondary">Source Code</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Portfolio Website</h2>
+            <img src="https://via.placeholder.com/800x500" alt="Web Project">
+            <p><strong>Tech Stack:</strong> HTML, CSS, JavaScript</p>
+            <p>A responsive personal portfolio website to showcase skills, projects, and connect with others.</p>
+            <div class="modal-links">
+                <a href="#" class="btn primary">Live Demo</a>
+                <a href="#" class="btn secondary">Source Code</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Automation Script</h2>
+            <img src="https://via.placeholder.com/800x500" alt="Python Project">
+            <p><strong>Tech Stack:</strong> Python</p>
+            <p>A Python script designed to automate repetitive tasks, demonstrating proficiency in scripting and problem solving.</p>
+            <div class="modal-links">
+                <a href="#" class="btn secondary">Source Code</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" data-reveal="bottom">Get In <span class="touch-red">Touch</span></h2>
+            <div class="contact-wrapper">
+                <div class="contact-info" data-reveal="left">
+                    <div class="info-item">
+
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>cozykrish2916@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Centurion University, Bhubaneswar, Odisha, India 752050</p>
+                        </div>
+                    </div>
+                <a
+  href="https://wa.me/916372658336"
+  target="_blank"
+  class="whatsapp-card"
+  aria-label="Chat on WhatsApp"
+>
+  <div class="whatsapp-icon">
+    <i class="fab fa-whatsapp"></i>
+  </div>
+  <div class="whatsapp-text">
+    <h4>WhatsApp</h4>
+    <p>Quick chat with me</p>
+  </div>
+</a>
+    
+                </div>
+                <form id="contact-form" class="contact-form" data-reveal="right">
+                    <div class="form-group">
+                        <input type="text" id="name" required>
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" required>
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" required></textarea>
+                        <label for="message">Message</label>
+                    </div>
+                    <button type="submit" class="btn primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Krish Sharma. All Rights Reserved.</p>
+            <div class="footer-socials">
+                <a href="https://github.com/COZYkrish"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/krish-sharma-710927380/"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/wtf.kid_ish/"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="fab-container">
+        <button class="fab-main" id="fab-main">
+            <i class="fas fa-plus"></i>
+        </button>
+        <div class="fab-menu">
+            <button class="fab-item" data-tooltip="Go to Top" onclick="scrollToTop()">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            <button class="fab-item" data-tooltip="Contact Me" onclick="scrollToContact()">
+                <i class="fas fa-envelope"></i>
+            </button>
+            <button class="fab-item" data-tooltip="View Skills" onclick="scrollToSkills()">
+                <i class="fas fa-code"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Animation -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Loading...</div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress"></div>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
+
