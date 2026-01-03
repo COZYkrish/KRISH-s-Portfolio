@@ -784,9 +784,22 @@ body {
         font-size: 0.8rem;
     }
 
-    .hero-content {
-        padding: 120px 1rem 2rem;
+    /* Hero Section Mobile */
+    .skills-hero {
+        flex-direction: column;
         text-align: center;
+        padding: 100px 1rem 2rem;
+        min-height: auto;
+    }
+
+    .hero-content {
+        padding: 0;
+        order: 2;
+    }
+
+    .hero-visual {
+        order: 1;
+        margin-bottom: 2rem;
     }
 
     .hero-title {
@@ -798,25 +811,32 @@ body {
     }
 
     .hero-description {
-        font-size: 1rem;
-        line-height: 1.7;
+        font-size: 1.1rem;
+        margin: 0 auto 2rem;
+        max-width: 100%;
     }
 
     .hero-stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
+        margin-top: 2rem;
     }
 
     .stat-card {
-        padding: 1.5rem;
+        padding: 1rem 0.5rem;
     }
 
     .stat-number {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .stat-label {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
+    }
+
+    /* Hide code matrix on mobile for better performance */
+    .hero-visual {
+        display: none;
     }
 
     .container {
@@ -878,6 +898,7 @@ body {
         max-width: 300px;
         justify-content: center;
         padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
     }
 
     .demo-grid {
@@ -918,10 +939,6 @@ body {
         gap: 1rem;
     }
 
-    .skills-hero {
-        padding: 100px 1rem 2rem;
-    }
-
     .matrix-visualization {
         width: 300px;
         height: 300px;
@@ -939,6 +956,24 @@ body {
 
     .tab-btn {
         min-height: 44px;
+    }
+
+    /* Performance optimization for mobile */
+    .bg-shape {
+        animation-duration: 30s;
+    }
+
+    .floating-particles::before,
+    .floating-particles::after {
+        animation-duration: 20s;
+    }
+
+    .skill-card:hover {
+        transform: none;
+    }
+
+    .demo-card:hover {
+        transform: none;
     }
 }
 
