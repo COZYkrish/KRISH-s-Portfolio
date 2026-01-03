@@ -927,14 +927,14 @@ footer {
 .hero {
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  padding-top: 90px;
+  align-items: flex-start;
+  padding-top: 20px;
 }
 
 .hero-wrapper {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
-  align-items: center;
+  align-items: flex-start;
   gap: 3rem;
 }
 
@@ -985,21 +985,36 @@ footer {
   position: relative;
 }
 
+/* ===== HERO BACKGROUND GLOW ===== */
+
 .hero-image::after {
   content: "";
   position: absolute;
-  inset: -25px;
+  inset: -35px;                  /* controls glow spread */
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(108,99,255,.35), transparent 60%);
-  filter: blur(25px);
-  z-index: -1;
+  background: radial-gradient(
+    circle,
+    rgba(108, 99, 255, 0.45),
+    rgba(0, 210, 255, 0.25),
+    transparent 70%
+  );
+  filter: blur(30px);
+  z-index: -2;                   /* goes behind image */
+  animation: glowPulse 4s ease-in-out infinite;
 }
 
-/* Floating animation */
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+/* Soft breathing glow */
+@keyframes glowPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
 }
+
 
 .hero-image {
   animation: float 6s ease-in-out infinite;
@@ -1681,3 +1696,79 @@ input[type="submit"]:hover {
     font-size: 0.95rem;
   }
 }
+/* ===== RAINBOW GLOW SOCIAL ICONS ===== */
+/* ===== BRAND COLORED GLOW SOCIAL ICONS ===== */
+
+.hero-social a {
+  position: relative;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+  color: #fff;
+  text-decoration: none;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ---------- GitHub ---------- */
+.hero-social a[href*="github"] {
+  background: #181717;
+  box-shadow: 0 0 20px rgba(24, 23, 23, 0.6);
+}
+
+/* ---------- LinkedIn ---------- */
+.hero-social a[href*="linkedin"] {
+  background: #0a66c2;
+  box-shadow: 0 0 20px rgba(10, 102, 194, 0.6);
+}
+
+/* ---------- Instagram ---------- */
+.hero-social a[href*="instagram"] {
+  background: linear-gradient(
+    45deg,
+    #feda75,
+    #fa7e1e,
+    #d62976,
+    #962fbf,
+    #4f5bd5
+  );
+  box-shadow: 0 0 22px rgba(214, 41, 118, 0.6);
+}
+
+/* Glow aura */
+.hero-social a::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: inherit;
+  filter: blur(18px);
+  opacity: 0.75;
+  z-index: -1;
+}
+
+/* Hover effect */
+.hero-social a:hover {
+  transform: translateY(-6px) scale(1.12);
+}
+
+/* Keep icon sharp */
+.hero-social a i {
+  position: relative;
+  z-index: 2;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-social a {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+}
+
