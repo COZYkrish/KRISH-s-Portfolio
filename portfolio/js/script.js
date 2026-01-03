@@ -545,7 +545,7 @@ document.addEventListener('click', (e) => {
 });
 /* Scroll reveal (non-breaking) */
 const revealElements = document.querySelectorAll(
-  "section, .project, .project-card"
+  "section, .project, .project-card, .timeline-item"
 );
 
 revealElements.forEach(el => {
@@ -553,7 +553,7 @@ revealElements.forEach(el => {
   el.style.transform = "translateY(30px)";
 });
 
-window.addEventListener("scroll", () => {
+function revealOnScroll() {
   revealElements.forEach(el => {
     const top = el.getBoundingClientRect().top;
     if (top < window.innerHeight - 100) {
@@ -562,7 +562,12 @@ window.addEventListener("scroll", () => {
       el.style.transition = "all 0.8s ease";
     }
   });
-});
+}
+
+window.addEventListener("scroll", revealOnScroll);
+
+// Reveal elements that are already in view on page load
+revealOnScroll();
 document.querySelectorAll(".btn, button").forEach(btn => {
   btn.addEventListener("mousemove", e => {
     const rect = btn.getBoundingClientRect();
