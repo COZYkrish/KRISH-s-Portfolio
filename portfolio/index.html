@@ -235,6 +235,302 @@
 
 </section>
 
+    <!-- Skills Details Section -->
+    <section id="skills-details" class="skills-details">
+        <div class="container">
+            <h2 class="section-title" data-reveal="bottom"><span class="tech-red">Skills</span> Details</h2>
+            <p class="skills-intro" data-reveal="bottom" data-delay="100">Explore my technical expertise with interactive code demonstrations</p>
+
+            <div class="skills-grid-detailed">
+                <!-- Python Card -->
+                <div class="skill-detail-card" data-skill="python" data-reveal="bottom">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Python</h3>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                    </div>
+                    <div class="mac-interface">
+                        <div class="mac-header">
+                            <div class="mac-buttons">
+                                <span class="mac-btn red"></span>
+                                <span class="mac-btn yellow"></span>
+                                <span class="mac-btn green"></span>
+                            </div>
+                            <div class="mac-title">python_demo.py</div>
+                        </div>
+                        <div class="code-window">
+                            <pre class="code-content" data-code="python">
+<span class="code-line"><span class="code-keyword">def</span> <span class="code-function">fibonacci</span>(n):</span>
+<span class="code-line">    <span class="code-keyword">if</span> n <= 1:</span>
+<span class="code-line">        <span class="code-keyword">return</span> n</span>
+<span class="code-line">    <span class="code-keyword">return</span> fibonacci(n-1) + fibonacci(n-2)</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-comment"># Calculate first 10 fibonacci numbers</span></span>
+<span class="code-line"><span class="code-keyword">for</span> i <span class="code-keyword">in</span> <span class="code-function">range</span>(10):</span>
+<span class="code-line">    <span class="code-function">print</span>(f"F({i}) = {fibonacci(i)}")</span>
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Proficient in Python for data analysis, automation, and backend development.</p>
+                    </div>
+                </div>
+
+                <!-- JavaScript Card -->
+                <div class="skill-detail-card" data-skill="javascript" data-reveal="bottom" data-delay="100">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>JavaScript</h3>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                    </div>
+                    <div class="mac-interface">
+                        <div class="mac-header">
+                            <div class="mac-buttons">
+                                <span class="mac-btn red"></span>
+                                <span class="mac-btn yellow"></span>
+                                <span class="mac-btn green"></span>
+                            </div>
+                            <div class="mac-title">react_component.jsx</div>
+                        </div>
+                        <div class="code-window">
+                            <pre class="code-content" data-code="javascript">
+<span class="code-line"><span class="code-keyword">import</span> React, { useState, useEffect } <span class="code-keyword">from</span> <span class="code-string">'react'</span>;</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-keyword">const</span> <span class="code-function">Counter</span> = () => {</span>
+<span class="code-line">  <span class="code-keyword">const</span> [count, setCount] = <span class="code-function">useState</span>(0);</span>
+<span class="code-line"></span>
+<span class="code-line">  <span class="code-keyword">return</span> (</span>
+<span class="code-line">    &lt;<span class="code-tag">div</span> <span class="code-attr">className</span>=<span class="code-string">"counter"</span>&gt;</span>
+<span class="code-line">      &lt;<span class="code-tag">h2</span>&gt;Count: {count}&lt;/<span class="code-tag">h2</span>&gt;</span>
+<span class="code-line">      &lt;<span class="code-tag">button</span> <span class="code-attr">onClick</span>={() => <span class="code-function">setCount</span>(count + 1)}&gt;</span>
+<span class="code-line">        Increment</span>
+<span class="code-line">      &lt;/<span class="code-tag">button</span>&gt;</span>
+<span class="code-line">    &lt;/<span class="code-tag">div</span>&gt;</span>
+<span class="code-line">  );</span>
+<span class="code-line">};</span>
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Expert in modern JavaScript, React, and frontend development.</p>
+                    </div>
+                </div>
+
+                <!-- Java Card -->
+                <div class="skill-detail-card" data-skill="java" data-reveal="bottom" data-delay="200">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-java"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Java</h3>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                    </div>
+                    <div class="mac-interface">
+                        <div class="mac-header">
+                            <div class="mac-buttons">
+                                <span class="mac-btn red"></span>
+                                <span class="mac-btn yellow"></span>
+                                <span class="mac-btn green"></span>
+                            </div>
+                            <div class="mac-title">HelloWorld.java</div>
+                        </div>
+                        <div class="code-window">
+                            <pre class="code-content" data-code="java">
+<span class="code-line"><span class="code-keyword">public class</span> <span class="code-class">HelloWorld</span> {</span>
+<span class="code-line">    <span class="code-keyword">public static void</span> <span class="code-function">main</span>(String[] args) {</span>
+<span class="code-line">        <span class="code-class">System</span>.out.println(<span class="code-string">"Hello, World!"</span>);</span>
+<span class="code-line">        </span>
+<span class="code-line">        <span class="code-comment">// Object-oriented programming</span></span>
+<span class="code-line">        <span class="code-class">Person</span> person = <span class="code-keyword">new</span> <span class="code-class">Person</span>(<span class="code-string">"John"</span>, 25);</span>
+<span class="code-line">        person.greet();</span>
+<span class="code-line">    }</span>
+<span class="code-line">}</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-keyword">class</span> <span class="code-class">Person</span> {</span>
+<span class="code-line">    <span class="code-keyword">private</span> String name;</span>
+<span class="code-line">    <span class="code-keyword">private int</span> age;</span>
+<span class="code-line">    </span>
+<span class="code-line">    <span class="code-keyword">public</span> <span class="code-function">Person</span>(String name, <span class="code-keyword">int</span> age) {</span>
+<span class="code-line">        <span class="code-keyword">this</span>.name = name;</span>
+<span class="code-line">        <span class="code-keyword">this</span>.age = age;</span>
+<span class="code-line">    }</span>
+<span class="code-line">}</span>
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Strong foundation in Java, OOP principles, and enterprise development.</p>
+                    </div>
+                </div>
+
+                <!-- HTML/CSS Card -->
+                <div class="skill-detail-card" data-skill="html" data-reveal="bottom" data-delay="300">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>HTML & CSS</h3>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                    </div>
+                    <div class="mac-interface">
+                        <div class="mac-header">
+                            <div class="mac-buttons">
+                                <span class="mac-btn red"></span>
+                                <span class="mac-btn yellow"></span>
+                                <span class="mac-btn green"></span>
+                            </div>
+                            <div class="mac-title">responsive_layout.html</div>
+                        </div>
+                        <div class="code-window">
+                            <pre class="code-content" data-code="html">
+<span class="code-line">&lt;<span class="code-tag">div</span> <span class="code-attr">class</span>=<span class="code-string">"responsive-grid"</span>&gt;</span>
+<span class="code-line">  &lt;<span class="code-tag">div</span> <span class="code-attr">class</span>=<span class="code-string">"card"</span>&gt;</span>
+<span class="code-line">    &lt;<span class="code-tag">h3</span>&gt;Modern Web Design&lt;/<span class="code-tag">h3</span>&gt;</span>
+<span class="code-line">    &lt;<span class="code-tag">p</span>&gt;Responsive and accessible&lt;/<span class="code-tag">p</span>&gt;</span>
+<span class="code-line">  &lt;/<span class="code-tag">div</span>&gt;</span>
+<span class="code-line">&lt;/<span class="code-tag">div</span>&gt;</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-comment">/* CSS Grid & Flexbox */</span></span>
+<span class="code-line">.responsive-grid {</span>
+<span class="code-line">  display: grid;</span>
+<span class="code-line">  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));</span>
+<span class="code-line">  gap: 2rem;</span>
+<span class="code-line">}</span>
+<span class="code-line"></span>
+<span class="code-line">.card {</span>
+<span class="code-line">  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);</span>
+<span class="code-line">  border-radius: 15px;</span>
+<span class="code-line">  padding: 2rem;</span>
+<span class="code-line">  box-shadow: 0 10px 30px rgba(0,0,0,0.2);</span>
+<span class="code-line">}</span>
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Master of modern HTML5, CSS3, responsive design, and web standards.</p>
+                    </div>
+                </div>
+
+                <!-- React Card -->
+                <div class="skill-detail-card" data-skill="react" data-reveal="bottom" data-delay="400">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>React</h3>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                    </div>
+                    <div class="mac-interface">
+                        <div class="mac-header">
+                            <div class="mac-buttons">
+                                <span class="mac-btn red"></span>
+                                <span class="mac-btn yellow"></span>
+                                <span class="mac-btn green"></span>
+                            </div>
+                            <div class="mac-title">useEffect_demo.jsx</div>
+                        </div>
+                        <div class="code-window">
+                            <pre class="code-content" data-code="react">
+<span class="code-line"><span class="code-keyword">import</span> { useState, useEffect } <span class="code-keyword">from</span> <span class="code-string">'react'</span>;</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-keyword">function</span> <span class="code-function">DataFetcher</span>() {</span>
+<span class="code-line">  <span class="code-keyword">const</span> [data, setData] = <span class="code-function">useState</span>(null);</span>
+<span class="code-line">  <span class="code-keyword">const</span> [loading, setLoading] = <span class="code-function">useState</span>(true);</span>
+<span class="code-line"></span>
+<span class="code-line">  <span class="code-function">useEffect</span>(() => {</span>
+<span class="code-line">    <span class="code-function">fetchData</span>()</span>
+<span class="code-line">      .then(result => {</span>
+<span class="code-line">        setData(result);</span>
+<span class="code-line">        setLoading(false);</span>
+<span class="code-line">      });</span>
+<span class="code-line">  }, []);</span>
+<span class="code-line"></span>
+<span class="code-line">  <span class="code-keyword">if</span> (loading) <span class="code-keyword">return</span> &lt;<span class="code-tag">div</span>&gt;Loading...&lt;/<span class="code-tag">div</span>&gt;;</span>
+<span class="code-line"></span>
+<span class="code-line">  <span class="code-keyword">return</span> (</span>
+<span class="code-line">    &lt;<span class="code-tag">div</span>&gt;</span>
+<span class="code-line">      &lt;<span class="code-tag">h2</span>&gt;{data.title}&lt;/<span class="code-tag">h2</span>&gt;</span>
+<span class="code-line">      &lt;<span class="code-tag">p</span>&gt;{data.description}&lt;/<span class="code-tag">p</span>&gt;</span>
+<span class="code-line">    &lt;/<span class="code-tag">div</span>&gt;</span>
+<span class="code-line">  );</span>
+<span class="code-line">}</span>
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Building dynamic user interfaces with React hooks and modern patterns.</p>
+                    </div>
+                </div>
+
+                <!-- Cloud Computing Card -->
+                <div class="skill-detail-card" data-skill="cloud" data-reveal="bottom" data-delay="500">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Cloud Computing</h3>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                    </div>
+                    <div class="mac-interface">
+                        <div class="mac-header">
+                            <div class="mac-buttons">
+                                <span class="mac-btn red"></span>
+                                <span class="mac-btn yellow"></span>
+                                <span class="mac-btn green"></span>
+                            </div>
+                            <div class="mac-title">aws_deployment.sh</div>
+                        </div>
+                        <div class="code-window">
+                            <pre class="code-content" data-code="bash">
+<span class="code-line"><span class="code-comment">#!/bin/bash</span></span>
+<span class="code-line"><span class="code-comment"># AWS EC2 Deployment Script</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-function">echo</span> <span class="code-string">"🚀 Starting AWS deployment..."</span></span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-comment"># Create EC2 instance</span></span>
+<span class="code-line">aws ec2 run-instances \</span>
+<span class="code-line">  --image-id ami-12345678 \</span>
+<span class="code-line">  --count 1 \</span>
+<span class="code-line">  --instance-type t2.micro \</span>
+<span class="code-line">  --key-name my-key-pair \</span>
+<span class="code-line">  --security-groups web-sg</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-comment"># Configure auto-scaling</span></span>
+<span class="code-line">aws autoscaling create-auto-scaling-group \</span>
+<span class="code-line">  --auto-scaling-group-name my-asg \</span>
+<span class="code-line">  --launch-template LaunchTemplateId=lt-123456 \</span>
+<span class="code-line">  --min-size 1 \</span>
+<span class="code-line">  --max-size 5 \</span>
+<span class="code-line">  --desired-capacity 2</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-function">echo</span> <span class="code-string">"✅ Deployment completed!"</span></span>
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Experience with AWS, Azure, and cloud infrastructure deployment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">

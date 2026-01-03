@@ -427,3 +427,204 @@ rippleCards.forEach(card => {
     }, 600);
   });
 });
+
+// Skills Details Section Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    // Smooth scroll to skills details
+    const skillsDetailsLink = document.querySelector('a[href="#skills-details"]');
+    if (skillsDetailsLink) {
+        skillsDetailsLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetSection = document.getElementById('skills-details');
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    }
+
+    // Code typing animation
+    const codeElements = document.querySelectorAll('.code-content');
+    codeElements.forEach((codeElement, index) => {
+        const originalHTML = codeElement.innerHTML;
+        const lines = Array.from(codeElement.querySelectorAll('.code-line'));
+
+        // Clear content and add typing cursor
+        codeElement.innerHTML = '<span class="typing-cursor"></span>';
+        const cursor = codeElement.querySelector('.typing-cursor');
+
+        let lineIndex = 0;
+        let charIndex = 0;
+        let currentLineElement = null;
+
+        function typeWriter() {
+            if (lineIndex < lines.length) {
+                if (!currentLineElement) {
+                    currentLineElement = document.createElement('div');
+                    currentLineElement.className = 'code-line';
+                    codeElement.insertBefore(currentLineElement, cursor);
+                }
+
+                const currentLine = lines[lineIndex];
+                const lineText = currentLine.textContent || currentLine.innerText;
+
+                if (charIndex < lineText.length) {
+                    const char = lineText.charAt(charIndex);
+                    const span = document.createElement('span');
+                    span.className = 'code-char';
+                    span.textContent = char;
+
+                    // Apply syntax highlighting
+                    if (/\b(def|class|if|else|for|while|return|import|from|const|let|var|function)\b/.test(lineText.substring(0, charIndex + 1))) {
+                        span.className += ' code-keyword';
+                    } else if (char === '"' || char === "'" || (char === ' ' && lineText.substring(charIndex - 1, charIndex + 1) === ' "')) {
+                        span.className += ' code-string';
+                    } else if (lineText.substring(charIndex - 1, charIndex + 1) === '//') {
+                        span.className += ' code-comment';
+                    }
+
+                    currentLineElement.appendChild(span);
+                    charIndex++;
+
+                    // Random typing speed for realism
+                    const speed = Math.random() * 100 + 50;
+                    setTimeout(typeWriter, speed);
+                } else {
+                    // Move to next line
+                    currentLineElement = null;
+                    lineIndex++;
+                    charIndex = 0;
+                    setTimeout(typeWriter, 300);
+                }
+            } else {
+                // Remove cursor when done
+                cursor.remove();
+            }
+        }
+
+        // Start typing animation after card is visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        typeWriter();
+                    }, index * 500);
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(codeElement.closest('.skill-detail-card'));
+    });
+
+    // Skill card hover effects
+    const skillCards = document.querySelectorAll('.skill-detail-card');
+    skillCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            // Add glow effect
+            card.style.boxShadow = '0 20px 40px rgba(108, 99, 255, 0.4), 0 0 30px rgba(0, 210, 255, 0.3)';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            // Reset glow effect
+            card.style.boxShadow = '';
+        });
+
+        // Mac button interactions
+        const macBtns = card.querySelectorAll('.mac-btn');
+        macBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                btn.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    btn.style.transform = '';
+                }, 150);
+            });
+        });
+    });
+
+    // Rainbow button animation
+    const rainbowBtn = document.querySelector('.rainbow-btn');
+    if (rainbowBtn) {
+        let hue = 0;
+        setInterval(() => {
+            hue = (hue + 1) % 360;
+            rainbowBtn.style.filter = `hue-rotate(${hue}deg)`;
+        }, 50);
+    }
+
+    // Code window interactions
+    const codeWindows = document.querySelectorAll('.code-window');
+    codeWindows.forEach(window => {
+        window.addEventListener('click', () => {
+            window.style.transform = 'scale(1.02)';
+            setTimeout(() => {
+                window.style.transform = '';
+            }, 200);
+        });
+    });
+
+    // Particle effect for skills section
+    const skillsSection = document.querySelector('.skills-details');
+    if (skillsSection) {
+        const canvas = document.createElement('canvas');
+        canvas.id = 'skills-particles';
+        canvas.style.position = 'absolute';
+        canvas.style.top = '0';
+        canvas.style.left = '0';
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+        canvas.style.pointerEvents = 'none';
+        canvas.style.zIndex = '1';
+        skillsSection.style.position = 'relative';
+        skillsSection.appendChild(canvas);
+
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = skillsSection.offsetWidth;
+            canvas.height = skillsSection.offsetHeight;
+        }
+
+        function createParticles() {
+            particles = [];
+            for (let i = 0; i < 50; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: Math.random() * 2 + 1,
+                    color: `hsl(${Math.random() * 60 + 200}, 70%, 60%)`
+                });
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+
+                if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+                if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                ctx.fillStyle = particle.color;
+                ctx.fill();
+            });
+
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        createParticles();
+        animateParticles();
+    }
+});
