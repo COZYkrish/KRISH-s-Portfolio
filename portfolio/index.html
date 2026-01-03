@@ -19,7 +19,7 @@
             <ul class="nav-links">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
+                <li><a href="skills.html">Skills</a></li>
                 <li><a href="#projects">Work</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -39,7 +39,7 @@
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
+                <li><a href="skills.html">Skills</a></li>
                 <li><a href="#projects">Work</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -127,6 +127,84 @@
                         <div class="stat-item">
                             <h4>DevOps</h4>
                             <p>Learner</p>
+                        </div>
+                    </div>
+
+                    <!-- Animated Statistics -->
+                    <div class="animated-stats" data-reveal="bottom">
+                        <div class="stat-counter">
+                            <div class="counter-number" data-target="15">0</div>
+                            <div class="counter-label">Skills Mastered</div>
+                        </div>
+                        <div class="stat-counter">
+                            <div class="counter-number" data-target="50">0</div>
+                            <div class="counter-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-counter">
+                            <div class="counter-number" data-target="1000">0</div>
+                            <div class="counter-label">Hours Coded</div>
+                        </div>
+                        <div class="stat-counter">
+                            <div class="counter-number" data-target="5">0</div>
+                            <div class="counter-label">Certifications</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Timeline Section -->
+    <section id="timeline" class="timeline-section">
+        <div class="container">
+            <h2 class="section-title" data-reveal="bottom"><span class="featured-red">My</span> Journey</h2>
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                <div class="timeline-item" data-reveal="left">
+                    <div class="timeline-content">
+                        <div class="timeline-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="timeline-text">
+                            <h3>Bachelor of Computer Applications</h3>
+                            <span class="timeline-date">2022 - Present</span>
+                            <p>Currently pursuing BCA with focus on cloud computing, web development, and software engineering principles.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item right" data-reveal="right">
+                    <div class="timeline-content">
+                        <div class="timeline-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div class="timeline-text">
+                            <h3>Cloud Computing Journey</h3>
+                            <span class="timeline-date">2023 - Present</span>
+                            <p>Deep dive into AWS, Azure, and cloud architecture. Learning deployment strategies, serverless computing, and DevOps practices.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-reveal="left">
+                    <div class="timeline-content">
+                        <div class="timeline-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="timeline-text">
+                            <h3>Programming Foundation</h3>
+                            <span class="timeline-date">2022 - 2023</span>
+                            <p>Mastered Python, Java, and web technologies. Built foundation in algorithms, data structures, and software development.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item right" data-reveal="right">
+                    <div class="timeline-content">
+                        <div class="timeline-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="timeline-text">
+                            <h3>Future Goals</h3>
+                            <span class="timeline-date">2024 - Future</span>
+                            <p>Aiming for cloud certifications, advanced DevOps skills, and contributing to open-source projects in cloud computing.</p>
                         </div>
                     </div>
                 </div>
@@ -228,8 +306,8 @@
 
   </div>
   <div class="tech-details-wrapper">
-  <a href="#skills-details" class="rainbow-btn">
-    <span>View Details</span>
+  <a href="skills.html" class="rainbow-btn">
+    <span>View All Skills</span>
   </a>
 </div>
 
@@ -701,8 +779,36 @@
         </div>
     </footer>
 
+    <!-- Floating Action Button -->
+    <div class="fab-container">
+        <button class="fab-main" id="fab-main">
+            <i class="fas fa-plus"></i>
+        </button>
+        <div class="fab-menu">
+            <button class="fab-item" data-tooltip="Go to Top" onclick="scrollToTop()">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            <button class="fab-item" data-tooltip="Contact Me" onclick="scrollToContact()">
+                <i class="fas fa-envelope"></i>
+            </button>
+            <button class="fab-item" data-tooltip="View Skills" onclick="scrollToSkills()">
+                <i class="fas fa-code"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Animation -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Loading...</div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress"></div>
+
     <script src="js/script.js"></script>
-    <div class="cursor"></div>
 
 </body>
 </html>

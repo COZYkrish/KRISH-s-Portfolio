@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krish Sharma | Technical Skills</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/skills.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="bg-shape shape-1"></div>
+        <div class="bg-shape shape-2"></div>
+        <div class="bg-shape shape-3"></div>
+        <div class="bg-shape shape-4"></div>
+        <div class="floating-particles"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="skills-nav">
+        <div class="nav-container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Portfolio
+            </a>
+            <h1 class="nav-title">Technical Skills</h1>
+            <div class="nav-stats">
+                <span class="stat-item">
+                    <i class="fas fa-code"></i>
+                    15+ Skills
+                </span>
+                <span class="stat-item">
+                    <i class="fas fa-rocket"></i>
+                    Advanced
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="skills-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="gradient-text">Mastering</span>
+                <span class="hero-subtitle">The Art of Code</span>
+            </h1>
+            <p class="hero-description">
+                Explore my comprehensive technical skill set across multiple domains,
+                from frontend development to cloud computing and beyond.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="95">0</div>
+                    <div class="stat-label">Proficiency</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">Hours Coded</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">Technologies</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="code-matrix">
+                <div class="matrix-line" data-delay="0"></div>
+                <div class="matrix-line" data-delay="1"></div>
+                <div class="matrix-line" data-delay="2"></div>
+                <div class="matrix-line" data-delay="3"></div>
+                <div class="matrix-line" data-delay="4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Categories -->
+    <section class="skills-categories">
+        <div class="container">
+            <div class="category-tabs">
+                <button class="tab-btn active" data-category="all">
+                    <i class="fas fa-layer-group"></i>
+                    All Skills
+                </button>
+                <button class="tab-btn" data-category="frontend">
+                    <i class="fas fa-desktop"></i>
+                    Frontend
+                </button>
+                <button class="tab-btn" data-category="backend">
+                    <i class="fas fa-server"></i>
+                    Backend
+                </button>
+                <button class="tab-btn" data-category="cloud">
+                    <i class="fas fa-cloud"></i>
+                    Cloud & DevOps
+                </button>
+                <button class="tab-btn" data-category="tools">
+                    <i class="fas fa-tools"></i>
+                    Tools & Platforms
+                </button>
+            </div>
+
+            <div class="skills-grid" id="skillsGrid">
+                <!-- Programming Languages -->
+                <div class="skill-card" data-category="frontend backend" data-skill="html">
+                    <div class="skill-header">
+                        <div class="skill-icon html-icon">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>HTML5</h3>
+                            <div class="skill-level">
+                                <div class="level-bar">
+                                    <div class="level-fill" style="width: 95%"></div>
+                                </div>
+                                <span>95%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Semantic markup, accessibility, modern HTML5 APIs</p>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="tag">Frontend</span>
+                        <span class="tag">Markup</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="frontend" data-skill="css">
+                    <div class="skill-header">
+                        <div class="skill-icon css-icon">
+                            <i class="fab fa-css3-alt"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>CSS3</h3>
+                            <div class="skill-level">
+                                <div class="level-bar">
+                                    <div class="level-fill" style="width: 90%"></div>
+                                </div>
+                                <span>90%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Animations, Flexbox, Grid, SCSS, responsive design</p>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="tag">Styling</span>
+                        <span class="tag">Animation</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="frontend backend" data-skill="javascript">
+                    <div class="skill-header">
+                        <div class="skill-icon js-icon">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>JavaScript</h3>
+                            <div class="skill-level">
+                                <div class="level-bar">
+                                    <div class="level-fill" style="width: 88%"></div>
+                                </div>
+                                <span>88%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>ES6+, async/await, DOM manipulation, APIs</p>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="tag">Programming</span>
+                        <span class="tag">ES6+</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="frontend" data-skill="react">
+                    <div class="skill-header">
+                        <div class="skill-icon react-icon">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>React</h3>
+                            <div class="skill-level">
+                                <div class="level-bar">
+                                    <div class="level-fill" style="width: 85%"></div>
+                                </div>
+                                <span>85%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Hooks, Context API, Redux, Next.js, component architecture</p>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="tag">Framework</span>
+                        <span class="tag">SPA</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="frontend" data-skill="angular">
+                    <div class="skill-header">
+                        <div class="skill-icon angular-icon">
+                            <i class="fab fa-angular"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Angular</h3>
+                            <div class="skill-level">
+                                <div class="level-bar">
+                                    <div class="level-fill" style="width: 75%"></div>
+                                </div>
+                                <span>75%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Components, services, RxJS, Angular CLI</p>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="tag">Framework</span>
+                        <span class="tag">TypeScript</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="backend" data-skill="python">
+                    <div class="skill-header">
+                        <div class="skill-icon python-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Python</h3>
+                            <div class="skill-level">
+                                <div class="level-bar">
+                                    <div class="level-fill" style="width: 92%"></div>
+                                </div>
+                                <span>92%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Django, Flask, data analysis, automation scripts</p>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="tag">Backend</span>
+                        <span class="tag">Data Science</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="backend" data-skill="java">
+                    <div class="skill-header">
+                        <div class="skill-icon java-icon">
+                            <i class="fab fa-java"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Java</h3>
+                            <div class="skill-level">
+                                <div class="level-bar">
+                                    <div class="level-fill" style="width: 80%"></div>
+                                </div>
+                                <span>80%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>OOP, Spring Boot, Hibernate, microservices</p>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="tag">Backend</span>
+                        <span class="tag">Enterprise</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="backend" data-skill="flask">
+                    <div class="skill-header">
+                        <div class="skill-icon flask-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Flask</h3>
+                            <div class="skill-level">
+                                <div class="level-bar">
+                                    <div class="level-fill" style="width: 82%"></div>
+                                </div>
+                                <span>82%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>REST APIs, Jinja2 templates, SQLAlchemy</p>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Web Framework</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="backend" data-skill="spring">
+                    <div class="skill-header">
+                        <div class="skill-icon spring-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Spring</h3>
+                            <div class="skill-level">
+                                <div class="level-bar">
+                                    <div class="level-fill" style="width: 78%"></div>
+                                </div>
+                                <span>78%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Spring Boot, Spring MVC, Spring Security</p>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">Framework</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="programming" data-skill="cpp">
+                    <div class="skill-header">
+                        <div class="skill-icon cpp-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>C++</h3>
+                            <div class="skill-level">
+                                <div class="level-bar">
+                                    <div class="level-fill" style="width: 70%"></div>
+                                </div>
+                                <span>70%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Object-oriented programming, STL, algorithms</p>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="tag">Programming</span>
+                        <span class="tag">Performance</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="cloud" data-skill="aws">
+                    <div class="skill-header">
+                        <div class="skill-icon aws-icon">
+                            <i class="fab fa-aws"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>AWS</h3>
+                            <div class="skill-level">
+                                <div class="level-bar">
+                                    <div class="level-fill" style="width: 76%"></div>
+                                </div>
+                                <span>76%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>EC2, S3, Lambda, CloudFormation, IAM</p>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="tag">Cloud</span>
+                        <span class="tag">Infrastructure</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="cloud" data-skill="cloudflare">
+                    <div class="skill-header">
+                        <div class="skill-icon cloudflare-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Cloudflare</h3>
+                            <div class="skill-level">
+                                <div class="level-bar">
+                                    <div class="level-fill" style="width: 72%"></div>
+                                </div>
+                                <span>72%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>CDN, DNS, security, page rules, workers</p>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="tag">CDN</span>
+                        <span class="tag">Security</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="tools" data-skill="netlify">
+                    <div class="skill-header">
+                        <div class="skill-icon netlify-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Netlify</h3>
+                            <div class="skill-level">
+                                <div class="level-bar">
+                                    <div class="level-fill" style="width: 85%"></div>
+                                </div>
+                                <span>85%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Static site deployment, functions, forms, CMS</p>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="tag">Deployment</span>
+                        <span class="tag">Serverless</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="tools" data-skill="anaconda">
+                    <div class="skill-header">
+                        <div class="skill-icon anaconda-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Anaconda</h3>
+                            <div class="skill-level">
+                                <div class="level-bar">
+                                    <div class="level-fill" style="width: 80%"></div>
+                                </div>
+                                <span>80%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Environment management, Jupyter, data science stack</p>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Data Science</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="tools" data-skill="powershell">
+                    <div class="skill-header">
+                        <div class="skill-icon powershell-icon">
+                            <i class="fas fa-terminal"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>PowerShell</h3>
+                            <div class="skill-level">
+                                <div class="level-bar">
+                                    <div class="level-fill" style="width: 78%"></div>
+                                </div>
+                                <span>78%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Automation, scripting, system administration</p>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="tag">Automation</span>
+                        <span class="tag">Windows</span>
+                    </div>
+                </div>
+
+                <div class="skill-card" data-category="tools" data-skill="terminal">
+                    <div class="skill-header">
+                        <div class="skill-icon terminal-icon">
+                            <i class="fas fa-window-maximize"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3>Windows Terminal</h3>
+                            <div class="skill-level">
+                                <div class="level-bar">
+                                    <div class="level-fill" style="width: 88%"></div>
+                                </div>
+                                <span>88%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-description">
+                        <p>Command line, Git, development workflows</p>
+                    </div>
+                    <div class="skill-tags">
+                        <span class="tag">CLI</span>
+                        <span class="tag">Development</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skill Showcase Section -->
+    <section class="skill-showcase">
+        <div class="container">
+            <h2 class="section-title">Live Code Demos</h2>
+            <div class="demo-grid">
+                <div class="demo-card" data-demo="react">
+                    <div class="demo-header">
+                        <h3>React Component</h3>
+                        <div class="demo-controls">
+                            <button class="demo-btn run-btn">
+                                <i class="fas fa-play"></i>
+                                Run
+                            </button>
+                        </div>
+                    </div>
+                    <div class="demo-content">
+                        <pre class="demo-code"><code>const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div className="counter"&gt;
+      &lt;h2&gt;Count: {count}&lt;/h2&gt;
+      &lt;button onClick={() => setCount(count + 1)}&gt;
+        Increment
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+};</code></pre>
+                    </div>
+                </div>
+
+                <div class="demo-card" data-demo="python">
+                    <div class="demo-header">
+                        <h3>Python Algorithm</h3>
+                        <div class="demo-controls">
+                            <button class="demo-btn run-btn">
+                                <i class="fas fa-play"></i>
+                                Run
+                            </button>
+                        </div>
+                    </div>
+                    <div class="demo-content">
+                        <pre class="demo-code"><code>def quicksort(arr):
+    if len(arr) <= 1:
+        return arr
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+    return quicksort(left) + middle + quicksort(right)</code></pre>
+                    </div>
+                </div>
+
+                <div class="demo-card" data-demo="css">
+                    <div class="demo-header">
+                        <h3>CSS Animation</h3>
+                        <div class="demo-controls">
+                            <button class="demo-btn run-btn">
+                                <i class="fas fa-play"></i>
+                                Run
+                            </button>
+                        </div>
+                    </div>
+                    <div class="demo-content">
+                        <pre class="demo-code"><code>.animated-element {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="skills-footer">
+        <div class="container">
+            <p>&copy; 2024 Krish Sharma. Crafting digital experiences with passion.</p>
+            <div class="footer-links">
+                <a href="index.html">Portfolio</a>
+                <a href="#contact">Contact</a>
+                <a href="https://github.com/COZYkrish">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/skills.js"></script>
+</body>
+</html>

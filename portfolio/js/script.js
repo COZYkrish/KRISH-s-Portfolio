@@ -1,5 +1,261 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Typing Effect
+    // 1. Loading Animation
+    const loadingOverlay = document.getElementById('loading-overlay');
+    if (loadingOverlay) {
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loadingOverlay.classList.add('hidden');
+            }, 1000);
+        });
+    }
+
+    // 2. Animated Statistics Counters
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counters = entry.target.querySelectorAll('.counter-number');
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    animateCounter(counter, target);
+                });
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    const animatedStats = document.querySelector('.animated-stats');
+    if (animatedStats) {
+        counterObserver.observe(animatedStats);
+    }
+
+    function animateCounter(element, target) {
+        let current = 0;
+        const increment = target / 100;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                element.textContent = target;
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.floor(current);
+            }
+        }, 20);
+    }
+
+    // 3. Interactive Timeline
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            // Remove active class from all items
+            timelineItems.forEach(i => i.classList.remove('active'));
+            // Add active class to clicked item
+            item.classList.add('active');
+            
+            // Animate timeline line
+            const timelineLine = document.querySelector('.timeline-line');
+            if (timelineLine) {
+                const progress = ((index + 1) / timelineItems.length) * 100;
+                timelineLine.style.setProperty('--progress', `${progress}%`);
+            }
+        });
+    });
+
+    // 4. Floating Action Button
+    const fabContainer = document.querySelector('.fab-container');
+    const fabMain = document.getElementById('fab-main');
+    
+    if (fabMain) {
+        fabMain.addEventListener('click', () => {
+            fabContainer.classList.toggle('active');
+        });
+
+        // Close FAB when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!fabContainer.contains(e.target)) {
+                fabContainer.classList.remove('active');
+            }
+        });
+    }
+
+    // FAB Navigation Functions
+    window.scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        fabContainer.classList.remove('active');
+    };
+
+    window.scrollToContact = () => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+        fabContainer.classList.remove('active');
+    };
+
+    window.scrollToSkills = () => {
+        const skillsSection = document.querySelector('a[href="skills.html"]');
+        if (skillsSection) {
+            window.location.href = 'skills.html';
+        }
+        fabContainer.classList.remove('active');
+    };
+
+    // 6. Enhanced Scroll Effects
+    let scrollProgress = 0;
+    window.addEventListener('scroll', () => {
+        const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        scrollProgress = scrolled;
+        
+        // Update CSS custom property for scroll progress
+        document.documentElement.style.setProperty('--scroll-progress', `${scrollProgress}%`);
+    });
+
+    // 7. Advanced Hover Effects
+    const glassCards = document.querySelectorAll('.glass-card, .project-card, .skill-card');
+    glassCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            card.style.setProperty('--x', `${x}px`);
+            card.style.setProperty('--y', `${y}px`);
+            
+            // 3D tilt effect
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+        });
+    });
+
+    // 8. Dynamic Background Effects
+    const bgCanvas = document.getElementById('bg-canvas');
+    if (bgCanvas) {
+        const ctx = bgCanvas.getContext('2d');
+        let particles = [];
+        
+        function createParticles() {
+            particles = [];
+            for (let i = 0; i < 30; i++) {
+                particles.push({
+                    x: Math.random() * window.innerWidth,
+                    y: Math.random() * window.innerHeight,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    size: Math.random() * 3 + 1,
+                    color: `hsl(${Math.random() * 60 + 200}, 70%, 60%)`,
+                    opacity: Math.random() * 0.5 + 0.2
+                });
+            }
+        }
+        
+        function animateParticles() {
+            ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+            
+            particles.forEach(particle => {
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+                
+                if (particle.x < 0 || particle.x > window.innerWidth) particle.vx *= -1;
+                if (particle.y < 0 || particle.y > window.innerHeight) particle.vy *= -1;
+                
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                ctx.fillStyle = particle.color;
+                ctx.globalAlpha = particle.opacity;
+                ctx.fill();
+            });
+            
+            requestAnimationFrame(animateParticles);
+        }
+        
+        window.addEventListener('resize', () => {
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+            createParticles();
+        });
+        
+        bgCanvas.width = window.innerWidth;
+        bgCanvas.height = window.innerHeight;
+        createParticles();
+        animateParticles();
+    }
+
+    // 9. Interactive Project Cards with Lightbox
+    const projectCardsLightbox = document.querySelectorAll('.project-card');
+    projectCardsLightbox.forEach(card => {
+        card.addEventListener('click', () => {
+            const img = card.querySelector('img');
+            const title = card.querySelector('h3');
+            const desc = card.querySelector('p');
+            
+            // Create lightbox
+            const lightbox = document.createElement('div');
+            lightbox.className = 'lightbox';
+            lightbox.innerHTML = `
+                <div class="lightbox-content">
+                    <span class="lightbox-close">&times;</span>
+                    <img src="${img.src}" alt="${img.alt}">
+                    <div class="lightbox-info">
+                        <h3>${title.textContent}</h3>
+                        <p>${desc.textContent}</p>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(lightbox);
+            
+            // Animate in
+            setTimeout(() => lightbox.classList.add('active'), 10);
+            
+            // Close lightbox
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+                    lightbox.classList.remove('active');
+                    setTimeout(() => lightbox.remove(), 300);
+                }
+            });
+        });
+    });
+
+    // 10. Dynamic Theme Color Updates
+    const updateThemeColors = () => {
+        const root = document.documentElement;
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        
+        if (isDark) {
+            root.style.setProperty('--primary-color', '#6C63FF');
+            root.style.setProperty('--secondary-color', '#FF6B6B');
+            root.style.setProperty('--bg-color', '#0a0a0a');
+            root.style.setProperty('--text-color', '#ffffff');
+        } else {
+            root.style.setProperty('--primary-color', '#4F46E5');
+            root.style.setProperty('--secondary-color', '#EC4899');
+            root.style.setProperty('--bg-color', '#ffffff');
+            root.style.setProperty('--text-color', '#1f2937');
+        }
+    };
+    
+    updateThemeColors();
+    
+    // Watch for theme changes
+    const observer = new MutationObserver(updateThemeColors);
+    observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+    });
     const textElement = document.querySelector('.typewriter');
     const words = ["Cloud Solutions", "Web Applications", "Scalable Systems", "Secure Deployments"];
     let wordIndex = 0;
@@ -328,14 +584,6 @@ document.querySelectorAll(".glass-card, .project-card, .review-card")
     card.style.setProperty("--y", `${e.clientY - rect.top}px`);
   });
 });
-const heroImg = document.querySelector(".hero-image img");
-
-window.addEventListener("mousemove", e => {
-  const x = (window.innerWidth / 2 - e.clientX) / 40;
-  const y = (window.innerHeight / 2 - e.clientY) / 40;
-
-  heroImg.style.transform = `translate(${x}px, ${y}px)`;
-});
 window.addEventListener("scroll", () => {
   const scrollTop = window.scrollY;
   const height = document.body.scrollHeight - window.innerHeight;
@@ -386,8 +634,18 @@ magneticCards.forEach(card => {
 });
 const aboutImg = document.querySelector(".about-img img");
 
+// Prevent image tilt while the page is scrolling
+let isScrolling = false;
+let _scrollTimer = null;
+window.addEventListener('scroll', () => {
+  isScrolling = true;
+  clearTimeout(_scrollTimer);
+  _scrollTimer = setTimeout(() => { isScrolling = false; }, 150);
+});
+
 if (aboutImg) {
   aboutImg.addEventListener("mousemove", (e) => {
+    if (isScrolling) return; // ignore mousemove events fired during scroll
     const rect = aboutImg.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
