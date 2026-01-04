@@ -115,7 +115,33 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.style.setProperty('--scroll-progress', `${scrollProgress}%`);
     });
 
-    // 7. Advanced Hover Effects
+    // 7. Contact Form - Open Gmail Compose
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Construct Gmail compose URL
+            const subject = `Portfolio Contact from ${name}`;
+            const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=cozykrish2916@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Open Gmail in new tab
+            window.open(gmailUrl, '_blank');
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Optional: Show success message
+            alert('Opening Gmail compose with your message...');
+        });
+    }
+
+    // 8. Advanced Hover Effects
     const glassCards = document.querySelectorAll('.glass-card, .project-card, .skill-card');
     glassCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
