@@ -479,7 +479,6 @@ body {
 }
 
 .skill-card:hover {
-    transform: scale(1.02);
     box-shadow: 0 25px 50px rgba(102, 126, 234, 0.3);
     border-color: rgba(102, 126, 234, 0.3);
 }
