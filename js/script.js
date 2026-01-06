@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         function createParticles() {
             particles = [];
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 10; i++) {
                 particles.push({
                     x: Math.random() * window.innerWidth,
                     y: Math.random() * window.innerHeight,
@@ -918,7 +918,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function createParticles() {
             particles = [];
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 15; i++) {
                 particles.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
