@@ -2,10 +2,10 @@
 :root {
     --primary-color: #222138;
     --secondary-color: #41419c;
-    --bg-color: #d2f4f3;
+    --bg-color: #eff7f6;
     --text-color: #240803;
     --card-bg: #f9f9f9;
-    --nav-bg: rgba(255, 255, 255, 0.95);
+    --nav-bg: rgba(243, 234, 234, 0.95);
     --shadow: 0 5px 15px rgba(255, 253, 253, 0.859);
     --transition: all 0.3s ease;
     --grad-main: linear-gradient(135deg, #6c63ff, #00d2ff);
@@ -14,7 +14,7 @@
 
 [data-theme="dark"] {
     --primary-color: #8E86FF;
-    --secondary-color: #F2F2F2;
+    --secondary-color: #dcdbdb;
     --bg-color: #1a1a2e;
     --text-color: #e0e0e0;
     --card-bg: #16213e;
