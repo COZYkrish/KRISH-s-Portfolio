@@ -42,4 +42,4 @@ I am actively exploring cloud platforms, deployment strategies, and system archi
 
 ---
 
-⭐ Feel free to explore the repository and follow my learning journey.
+
