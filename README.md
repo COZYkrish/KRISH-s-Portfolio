@@ -40,7 +40,7 @@ This portfolio is created to document my learning progress, showcase academic an
 ## 🚀 Continuous Learning
 I am actively exploring cloud platforms, deployment strategies, and system architecture to strengthen my foundation and prepare for cloud engineering and DevOps-oriented roles.
 
-⭐ Feel free to explore the repository and follow my learning journey.
+<!-- ⭐ Feel free to explore the repository and follow my learning journey. -->
 ---
 
 
