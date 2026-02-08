@@ -261,11 +261,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const root = document.documentElement;
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         
-        // if (isDark) {
-        //     root.style.setProperty('--primary-color', '#6C63FF');
-        //     root.style.setProperty('--secondary-color', '#FF6B6B');
-        //     root.style.setProperty('--bg-color', '#0a0a0a');
-        //     root.style.setProperty('--text-color', '#ffffff');
+        if (isDark) {
+            root.style.setProperty('--primary-color', '#6C63FF');
+            root.style.setProperty('--secondary-color', '#FF6B6B');
+            root.style.setProperty('--bg-color', '#0a0a0a');
+            root.style.setProperty('--text-color', '#ffffff');
         } else {
             root.style.setProperty('--primary-color', '#4F46E5');
             root.style.setProperty('--secondary-color', '#EC4899');
