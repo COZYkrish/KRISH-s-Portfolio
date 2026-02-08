@@ -247,14 +247,14 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => lightbox.classList.add('active'), 10);
             
             // Close lightbox
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
-                    lightbox.classList.remove('active');
-                    setTimeout(() => lightbox.remove(), 300);
-                }
-            });
-        });
-    });
+    //         lightbox.addEventListener('click', (e) => {
+    //             if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+    //                 lightbox.classList.remove('active');
+    //                 setTimeout(() => lightbox.remove(), 300);
+    //             }
+    //         });
+    //     });
+    // });
 
     // 10. Dynamic Theme Color Updates
     const updateThemeColors = () => {
