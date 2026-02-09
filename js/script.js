@@ -266,13 +266,13 @@ document.addEventListener('DOMContentLoaded', () => {
             root.style.setProperty('--secondary-color', '#FF6B6B');
             root.style.setProperty('--bg-color', '#0a0a0a');
             root.style.setProperty('--text-color', '#ffffff');
-    //     } else {
-    //         root.style.setProperty('--primary-color', '#4F46E5');
-    //         root.style.setProperty('--secondary-color', '#EC4899');
-    //         root.style.setProperty('--bg-color', '#ffffff');
-    //         root.style.setProperty('--text-color', '#1f2937');
-    //     }
-    // };
+        } else {
+            root.style.setProperty('--primary-color', '#4F46E5');
+            root.style.setProperty('--secondary-color', '#EC4899');
+            root.style.setProperty('--bg-color', '#ffffff');
+            root.style.setProperty('--text-color', '#1f2937');
+        }
+    };
     
     updateThemeColors();
     
