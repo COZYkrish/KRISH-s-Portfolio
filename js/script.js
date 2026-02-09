@@ -420,23 +420,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const filterValue = btn.getAttribute('data-filter');
 
-    //         projectCards.forEach(card => {
-    //             if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-    //                 card.style.display = 'block';
-    //                 setTimeout(() => {
-    //                     card.style.opacity = '1';
-    //                     card.style.transform = 'scale(1)';
-    //                 }, 200);
-    //             } else {
-    //                 card.style.opacity = '0';
-    //                 card.style.transform = 'scale(0.8)';
-    //                 setTimeout(() => {
-    //                     card.style.display = 'none';
-    //                 }, 300);
-    //             }
-    //         });
-    //     });
-    // });
+            projectCards.forEach(card => {
+                if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    }, 200);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    });
 
     // 5. Theme Toggler
     const themeToggle = document.getElementById('theme-toggle');
