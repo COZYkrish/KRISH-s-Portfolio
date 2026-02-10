@@ -187,25 +187,25 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         
-        // function animateParticles() {
-        //     ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        function animateParticles() {
+            ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
             
-        //     particles.forEach(particle => {
-        //         particle.x += particle.vx;
-        //         particle.y += particle.vy;
+            particles.forEach(particle => {
+                particle.x += particle.vx;
+                particle.y += particle.vy;
                 
-        //         if (particle.x < 0 || particle.x > window.innerWidth) particle.vx *= -1;
-        //         if (particle.y < 0 || particle.y > window.innerHeight) particle.vy *= -1;
+                if (particle.x < 0 || particle.x > window.innerWidth) particle.vx *= -1;
+                if (particle.y < 0 || particle.y > window.innerHeight) particle.vy *= -1;
                 
-        //         ctx.beginPath();
-        //         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        //         ctx.fillStyle = particle.color;
-        //         ctx.globalAlpha = particle.opacity;
-        //         ctx.fill();
-        //     });
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                ctx.fillStyle = particle.color;
+                ctx.globalAlpha = particle.opacity;
+                ctx.fill();
+            });
             
-        //     requestAnimationFrame(animateParticles);
-        // }
+            requestAnimationFrame(animateParticles);
+        }
         
         window.addEventListener('resize', () => {
             bgCanvas.width = window.innerWidth;
