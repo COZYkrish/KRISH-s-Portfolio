@@ -86,24 +86,24 @@ document.addEventListener('DOMContentLoaded', () => {
         fabContainer.classList.remove('active');
     };
 
-    window.scrollToContact = () => {
-        const contactSection = document.getElementById('contact');
-        if (contactSection) {
-            contactSection.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-        fabContainer.classList.remove('active');
-    };
+    // window.scrollToContact = () => {
+    //     const contactSection = document.getElementById('contact');
+    //     if (contactSection) {
+    //         contactSection.scrollIntoView({
+    //             behavior: 'smooth',
+    //             block: 'start'
+    //         });
+    //     }
+    //     fabContainer.classList.remove('active');
+    // };
 
-    window.scrollToSkills = () => {
-        const skillsSection = document.querySelector('a[href="skills.html"]');
-        if (skillsSection) {
-            window.location.href = 'skills.html';
-        }
-        fabContainer.classList.remove('active');
-    };
+    // window.scrollToSkills = () => {
+    //     const skillsSection = document.querySelector('a[href="skills.html"]');
+    //     if (skillsSection) {
+    //         window.location.href = 'skills.html';
+    //     }
+    //     fabContainer.classList.remove('active');
+    // };
 
     // 6. Enhanced Scroll Effects
     let scrollProgress = 0;
