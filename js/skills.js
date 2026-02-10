@@ -58,17 +58,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Skill Card Hover Effects
-    skillCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-15px) scale(1.02) rotateX(5deg)';
-            card.style.boxShadow = '0 30px 60px rgba(102, 126, 234, 0.4)';
-        });
+    // skillCards.forEach(card => {
+    //     card.addEventListener('mouseenter', () => {
+    //         card.style.transform = 'translateY(-15px) scale(1.02) rotateX(5deg)';
+    //         card.style.boxShadow = '0 30px 60px rgba(102, 126, 234, 0.4)';
+    //     });
 
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0) scale(1) rotateX(0deg)';
-            card.style.boxShadow = '';
-        });
-    });
+    //     card.addEventListener('mouseleave', () => {
+    //         card.style.transform = 'translateY(0) scale(1) rotateX(0deg)';
+    //         card.style.boxShadow = '';
+    //     });
+    // });
 
     // Level Bar Animation on Scroll
     const levelBars = document.querySelectorAll('.level-fill');
