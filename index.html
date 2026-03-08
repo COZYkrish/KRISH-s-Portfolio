@@ -100,6 +100,78 @@
   </div>
 </section>
 
+    <!-- GitHub Live Stats -->
+    <section id="github-live" class="github-live">
+        <div class="container">
+            <h2 class="section-title" data-reveal="bottom"><span class="tech-red">GitHub</span> Live Stats</h2>
+            <div class="github-dashboard">
+                <article class="github-panel top-panel" data-reveal="bottom">
+                    <div class="github-panel-head">
+                        <h3 id="github-title">COZYkrish's GitHub Stats</h3>
+                        <span id="github-updated">Updating...</span>
+                    </div>
+                    <div class="github-top-grid">
+                        <ul class="github-metrics">
+                            <li><span>Total Stars</span><strong id="gh-total-stars">--</strong></li>
+                            <li><span>Total Commits (<span id="gh-year-label">----</span>)</span><strong id="gh-total-commits">--</strong></li>
+                            <li><span>Total PRs</span><strong id="gh-total-prs">--</strong></li>
+                            <li><span>Total Issues</span><strong id="gh-total-issues">--</strong></li>
+                            <li><span>Contributed to</span><strong id="gh-contributed-repos">--</strong></li>
+                            <li><span>Public Repos</span><strong id="gh-public-repos">--</strong></li>
+                        </ul>
+                        <div class="grade-wrap">
+                            <svg class="grade-ring" viewBox="0 0 120 120" aria-hidden="true">
+                                <circle cx="60" cy="60" r="48"></circle>
+                                <circle id="gh-grade-ring" cx="60" cy="60" r="48"></circle>
+                            </svg>
+                            <div class="grade-label">
+                                <span id="gh-grade">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="github-panel streak-panel" data-reveal="bottom" data-delay="100">
+                    <div class="streak-col">
+                        <h4 id="gh-total-contributions">--</h4>
+                        <p>Total Contributions</p>
+                    </div>
+                    <div class="streak-col center">
+                        <div class="streak-ring">
+                            <span id="gh-current-streak">--</span>
+                        </div>
+                        <p>Current Streak (days)</p>
+                    </div>
+                    <div class="streak-col">
+                        <h4 id="gh-longest-streak">--</h4>
+                        <p>Longest Streak</p>
+                    </div>
+                </article>
+
+                <div class="github-bottom-grid">
+                    <article class="github-panel languages-panel" data-reveal="bottom" data-delay="160">
+                        <h3>Most Used Languages</h3>
+                        <div class="lang-bar" id="gh-lang-bar"></div>
+                        <div class="lang-list" id="gh-lang-list"></div>
+                    </article>
+
+                    <article class="github-panel heatmap-panel" data-reveal="bottom" data-delay="220">
+                        <h3>Commit Heat Snapshot</h3>
+                        <div class="heatmap-months" id="gh-heat-months"></div>
+                        <div class="heatmap-grid" id="gh-heat-grid"></div>
+                        <div class="heat-legend">
+                            <span>Less</span>
+                            <div class="legend-squares">
+                                <i class="lv0"></i><i class="lv1"></i><i class="lv2"></i><i class="lv3"></i><i class="lv4"></i>
+                            </div>
+                            <span>More</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- About Section -->
     <section id="about" class="about">
@@ -734,6 +806,7 @@
     <!-- Scroll Progress Indicator -->
     <div class="scroll-progress"></div>
 
+    <script src="js/github-live.js"></script>
     <script src="js/modern-ui.js"></script>
     <script src="js/script.js"></script>
 
