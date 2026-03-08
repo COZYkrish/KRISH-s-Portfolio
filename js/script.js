@@ -444,18 +444,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 7. Canvas Particle Animation
     const canvas = document.getElementById('bg-canvas');
-    if (canvas) {
+    const heroSection = document.getElementById('home');
+    if (canvas && heroSection) {
         const ctx = canvas.getContext('2d');
         let particlesArray;
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        function resizeCanvas() {
+            canvas.width = heroSection.clientWidth;
+            canvas.height = heroSection.clientHeight;
             init();
-        });
+        }
+
+        window.addEventListener('resize', resizeCanvas);
 
         class Particle {
             constructor(x, y, directionX, directionY, size, color) {
@@ -493,8 +493,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const numberOfParticles = (canvas.height * canvas.width) / 7000;
             for (let i = 0; i < numberOfParticles; i++) {
                 const size = (Math.random() * 2) + 1; // Random size
-                const x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
-                const y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                const x = (Math.random() * ((canvas.width - size * 2) - (size * 2)) + size * 2);
+                const y = (Math.random() * ((canvas.height - size * 2) - (size * 2)) + size * 2);
                 const directionX = (Math.random() * 0.4) - 0.2;
                 const directionY = (Math.random() * 0.4) - 0.2;
                 const color = '#6C63FF';
@@ -505,7 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function animate() {
             requestAnimationFrame(animate);
-            ctx.clearRect(0, 0, innerWidth, innerHeight);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             for (let i = 0; i < particlesArray.length; i++) {
                 particlesArray[i].update();
@@ -533,7 +533,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        init();
+        resizeCanvas();
         animate();
     }
 });
