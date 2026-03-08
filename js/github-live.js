@@ -28,7 +28,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     heatGrid: document.getElementById("gh-heat-grid")
   };
 
-  if (!Object.values(els).every(Boolean)) return;
+  const requiredEls = [
+    els.title, els.updated, els.year, els.stars, els.commits, els.prs, els.issues,
+    els.contributed, els.repos, els.grade, els.gradeRing, els.totalContrib,
+    els.currentStreak, els.longestStreak, els.streakImage, els.streakLink,
+    els.langBar, els.langList
+  ];
+  if (!requiredEls.every(Boolean)) return;
 
   els.title.textContent = `${username}'s GitHub Stats`;
   els.year.textContent = String(currentYear);
@@ -69,8 +75,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (snap.langBarHtml) els.langBar.innerHTML = snap.langBarHtml;
     if (snap.langListHtml) els.langList.innerHTML = snap.langListHtml;
-    if (snap.heatMonthsHtml) els.heatMonths.innerHTML = snap.heatMonthsHtml;
-    if (snap.heatGridHtml) els.heatGrid.innerHTML = snap.heatGridHtml;
+    if (els.heatMonths && snap.heatMonthsHtml) els.heatMonths.innerHTML = snap.heatMonthsHtml;
+    if (els.heatGrid && snap.heatGridHtml) els.heatGrid.innerHTML = snap.heatGridHtml;
 
     if (fromCache) {
       const time = snap.updatedAt
@@ -370,8 +376,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       ].forEach((n) => { n.textContent = "--"; });
       els.langBar.innerHTML = "";
       els.langList.innerHTML = '<div class="lang-item">Unavailable</div>';
-      els.heatGrid.innerHTML = "";
-      els.heatMonths.innerHTML = "";
+      if (els.heatGrid) els.heatGrid.innerHTML = "";
+      if (els.heatMonths) els.heatMonths.innerHTML = "";
       applyGrade("--", NaN);
       els.updated.textContent = "Update failed (rate limit/network).";
     } else {
