@@ -222,6 +222,88 @@ body {
     margin-bottom: 1.4rem;
 }
 
+.spotlight {
+    position: relative;
+    margin-bottom: 1.2rem;
+    padding: 1.35rem 1.35rem 1.2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(157, 176, 255, 0.34);
+    background:
+        radial-gradient(circle at 14% 8%, rgba(94, 234, 212, 0.17), transparent 36%),
+        radial-gradient(circle at 86% 20%, rgba(96, 165, 250, 0.2), transparent 34%),
+        linear-gradient(135deg, rgba(19, 27, 55, 0.92), rgba(13, 21, 45, 0.92));
+    box-shadow: 0 18px 56px rgba(8, 27, 70, 0.42);
+    overflow: hidden;
+}
+
+.spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.15) 50%, transparent 70%);
+    transform: translateX(-110%);
+    animation: spotlightSweep 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.spotlight-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 236, 255, 0.45);
+    padding: 0.3rem 0.7rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #d5f6ff;
+    margin-bottom: 0.55rem;
+    background: rgba(94, 234, 212, 0.11);
+}
+
+.spotlight h3 {
+    font: 700 1.3rem/1.2 "Sora", sans-serif;
+    margin-bottom: 0.45rem;
+}
+
+.spotlight p {
+    color: #c8d2f5;
+    max-width: 760px;
+    margin-bottom: 0.85rem;
+}
+
+.spotlight-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.9rem;
+}
+
+.spotlight-tech span {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #e5ecff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+}
+
+.spotlight-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    text-decoration: none;
+    color: #9ef4ff;
+    font-weight: 700;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.spotlight-link:hover {
+    color: #ffffff;
+    transform: translateX(2px);
+}
+
 .filter-btn {
     border: 1px solid var(--stroke);
     background: rgba(255, 255, 255, 0.03);
@@ -392,6 +474,12 @@ body {
     50% { transform: scale(1.07); opacity: 0.8; }
 }
 
+@keyframes spotlightSweep {
+    0% { transform: translateX(-110%); }
+    45% { transform: translateX(115%); }
+    100% { transform: translateX(115%); }
+}
+
 @media (max-width: 1000px) {
     .projects-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -418,5 +506,9 @@ body {
 
     .projects-grid {
         grid-template-columns: 1fr;
+    }
+
+    .spotlight {
+        padding: 1.05rem;
     }
 }

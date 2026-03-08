@@ -1,0 +1,89 @@
+:root {
+  --fx-accent: #66e3ff;
+  --fx-accent-2: #8b5cf6;
+  --fx-glow: 0 14px 36px rgba(102, 227, 255, 0.24);
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+h1, h2, h3, h4, .logo, .nav-title, .hero-title {
+  font-family: "Sora", "Inter", sans-serif;
+  letter-spacing: 0.01em;
+}
+
+.ui-cursor,
+.ui-cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.ui-cursor {
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(120deg, var(--fx-accent), #ffffff);
+  box-shadow: 0 0 14px rgba(102, 227, 255, 0.75);
+}
+
+.ui-cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(102, 227, 255, 0.55);
+  box-shadow: var(--fx-glow);
+}
+
+.ui-cursor-ring.active {
+  transform: scale(1.45);
+  border-color: rgba(139, 92, 246, 0.72);
+}
+
+.page-fade {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.42s ease, transform 0.42s ease;
+}
+
+.page-fade.page-ready {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(102, 227, 255, 0.2), transparent 30%),
+    radial-gradient(circle at 80% 10%, rgba(139, 92, 246, 0.2), transparent 35%),
+    rgba(3, 8, 20, 0.96);
+  transition: opacity 0.35s ease;
+}
+
+.page-transition-overlay.active {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-fade,
+  .ui-cursor,
+  .ui-cursor-ring,
+  .page-transition-overlay {
+    transition: none !important;
+  }
+}
+
+@media (max-width: 900px), (hover: none) {
+  .ui-cursor,
+  .ui-cursor-ring {
+    display: none;
+  }
+}
