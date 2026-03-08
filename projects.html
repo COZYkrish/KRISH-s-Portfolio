@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krish Sharma | Projects</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/projects.css">
+</head>
+<body>
+    <div class="animated-bg" aria-hidden="true">
+        <div class="bg-shape shape-1"></div>
+        <div class="bg-shape shape-2"></div>
+        <div class="bg-shape shape-3"></div>
+        <div class="bg-shape shape-4"></div>
+        <div class="bg-grid"></div>
+    </div>
+
+    <nav class="projects-nav">
+        <div class="nav-container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Portfolio
+            </a>
+            <h1 class="nav-title">Project Showcase</h1>
+            <a href="skills.html" class="skills-btn">
+                Skills
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </nav>
+
+    <header class="projects-hero">
+        <div class="hero-content">
+            <p class="eyebrow">Builds I am proud of</p>
+            <h2 class="hero-title">
+                <span class="gradient-text">Modern Projects</span>
+                Built for Real Users
+            </h2>
+            <p class="hero-description">
+                A focused collection of frontend and full-stack projects with secure backends, clean interfaces, and practical architecture.
+            </p>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <span class="stat-number" data-target="6">0</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" data-target="18">0</span>
+                    <span class="stat-label">Core Technologies</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" data-target="100">0</span>
+                    <span class="stat-label">Creativity</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="projects-section">
+        <div class="container">
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="frontend">Frontend</button>
+                <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
+                <button class="filter-btn" data-filter="java">Java</button>
+            </div>
+
+            <div class="projects-grid" id="projectsGrid">
+                <article class="project-card reveal" data-category="frontend fullstack">
+                    <div class="project-visual gradient-1">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="project-body">
+                        <h3>Student Learning Dashboard</h3>
+                        <p>Interactive learning analytics dashboard with smooth UI transitions and persistent data handling.</p>
+                        <div class="stack-tags">
+                            <span>React</span><span>Vite</span><span>Tailwind CSS</span><span>Framer Motion</span><span>Recharts</span><span>Context API</span>
+                        </div>
+                        <a class="project-link" href="https://github.com/COZYkrish/Student-learning-dashboard" target="_blank" rel="noopener noreferrer">
+                            View Source <i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card reveal" data-category="frontend">
+                    <div class="project-visual gradient-2">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="project-body">
+                        <h3>Modern Expense Tracker</h3>
+                        <p>Expense tracking app with visual analytics, polished animations, and browser-based persistence.</p>
+                        <div class="stack-tags">
+                            <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Chart.js</span><span>LocalStorage</span>
+                        </div>
+                        <a class="project-link" href="https://github.com/COZYkrish/modern-expense-tracker" target="_blank" rel="noopener noreferrer">
+                            View Source <i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card reveal" data-category="fullstack">
+                    <div class="project-visual gradient-3">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="project-body">
+                        <h3>Fintech Dashboard</h3>
+                        <p>Financial dashboard with Flask backend, secure login flow, and production-ready database support.</p>
+                        <div class="stack-tags">
+                            <span>Python</span><span>Flask</span><span>Flask-Login</span><span>Flask-SQLAlchemy</span><span>SQLite</span><span>PostgreSQL</span>
+                        </div>
+                        <a class="project-link" href="https://github.com/COZYkrish/fintech-dashboard" target="_blank" rel="noopener noreferrer">
+                            View Source <i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card reveal" data-category="fullstack">
+                    <div class="project-visual gradient-4">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="project-body">
+                        <h3>NeoShort</h3>
+                        <p>URL shortener built with Flask backend and a minimal frontend, using lightweight JSON storage.</p>
+                        <div class="stack-tags">
+                            <span>Python</span><span>Flask</span><span>HTML5</span><span>CSS3</span><span>JSON Storage</span>
+                        </div>
+                        <a class="project-link" href="https://github.com/COZYkrish/NeoShort" target="_blank" rel="noopener noreferrer">
+                            View Source <i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card reveal" data-category="fullstack java">
+                    <div class="project-visual gradient-5">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div class="project-body">
+                        <h3>Complaint Portal</h3>
+                        <p>MVC complaint management portal with Spring Boot, JPA, and template-based UI rendering.</p>
+                        <div class="stack-tags">
+                            <span>Java</span><span>Spring Boot</span><span>Spring Data JPA</span><span>H2</span><span>Thymeleaf</span><span>Maven</span>
+                        </div>
+                        <a class="project-link" href="https://github.com/COZYkrish/COMPLAINT-PORTAL" target="_blank" rel="noopener noreferrer">
+                            View Source <i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="project-card reveal" data-category="fullstack">
+                    <div class="project-visual gradient-6">
+                        <i class="fas fa-building-columns"></i>
+                    </div>
+                    <div class="project-body">
+                        <h3>Online Banking System</h3>
+                        <p>Secure full-stack banking system with JWT auth, encrypted credentials, and MongoDB data models.</p>
+                        <div class="stack-tags">
+                            <span>Node.js</span><span>Express.js</span><span>MongoDB</span><span>Mongoose</span><span>JWT</span><span>bcrypt</span>
+                        </div>
+                        <a class="project-link" href="https://github.com/COZYkrish/online-banking-system" target="_blank" rel="noopener noreferrer">
+                            View Source <i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="projects-footer">
+        <p>&copy; 2026 Krish Sharma. Designed for impact.</p>
+    </footer>
+
+    <script src="js/projects.js"></script>
+</body>
+</html>
