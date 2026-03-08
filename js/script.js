@@ -166,60 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 8. Dynamic Background Effects
-    const bgCanvas = document.getElementById('bg-canvas');
-    if (bgCanvas) {
-        const ctx = bgCanvas.getContext('2d');
-        let particles = [];
-        
-        function createParticles() {
-            particles = [];
-            for (let i = 0; i < 10; i++) {
-                particles.push({
-                    x: Math.random() * window.innerWidth,
-                    y: Math.random() * window.innerHeight,
-                    vx: (Math.random() - 0.5) * 0.5,
-                    vy: (Math.random() - 0.5) * 0.5,
-                    size: Math.random() * 3 + 1,
-                    color: `hsl(${Math.random() * 60 + 200}, 70%, 60%)`,
-                    opacity: Math.random() * 0.5 + 0.2
-                });
-            }
-        }
-        
-        function animateParticles() {
-            ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-            
-            particles.forEach(particle => {
-                particle.x += particle.vx;
-                particle.y += particle.vy;
-                
-                if (particle.x < 0 || particle.x > window.innerWidth) particle.vx *= -1;
-                if (particle.y < 0 || particle.y > window.innerHeight) particle.vy *= -1;
-                
-                ctx.beginPath();
-                ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                ctx.fillStyle = particle.color;
-                ctx.globalAlpha = particle.opacity;
-                ctx.fill();
-            });
-            
-            requestAnimationFrame(animateParticles);
-        }
-        
-        window.addEventListener('resize', () => {
-            bgCanvas.width = window.innerWidth;
-            bgCanvas.height = window.innerHeight;
-            createParticles();
-        });
-        
-        bgCanvas.width = window.innerWidth;
-        bgCanvas.height = window.innerHeight;
-        createParticles();
-        animateParticles();
-    }
-
-    // 9. Interactive Project Cards with Lightbox
+    // 8. Interactive Project Cards with Lightbox
     const projectCardsLightbox = document.querySelectorAll('.project-card');
     projectCardsLightbox.forEach(card => {
         card.addEventListener('click', () => {
@@ -256,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 10. Dynamic Theme Color Updates
+    // 9. Dynamic Theme Color Updates
     const updateThemeColors = () => {
         const root = document.documentElement;
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -543,7 +490,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function init() {
             particlesArray = [];
-            const numberOfParticles = (canvas.height * canvas.width) / 9000;
+            const numberOfParticles = (canvas.height * canvas.width) / 7000;
             for (let i = 0; i < numberOfParticles; i++) {
                 const size = (Math.random() * 2) + 1; // Random size
                 const x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
@@ -573,8 +520,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) + 
                                      ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
                     
-                    if (distance < (canvas.width/7) * (canvas.height/7)) {
-                        opacityValue = 1 - (distance/20000);
+                    if (distance < 18000) {
+                        opacityValue = 1 - (distance / 18000);
                         ctx.strokeStyle = 'rgba(108, 99, 255,' + opacityValue + ')';
                         ctx.lineWidth = 1;
                         ctx.beginPath();
