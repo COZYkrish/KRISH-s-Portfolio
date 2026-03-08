@@ -284,10 +284,7 @@ body {
 }
 
 .project-card.hidden {
-    opacity: 0;
-    transform: translateY(10px);
-    pointer-events: none;
-    position: absolute;
+    display: none;
 }
 
 .project-visual {
