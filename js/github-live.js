@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const username = "COZYkrish";
+  const cacheKey = `github_live_stats_v2_${username.toLowerCase()}`;
   const currentYear = new Date().getFullYear();
   const yearStartIso = `${currentYear}-01-01T00:00:00Z`;
   const yearEndIso = `${currentYear}-12-31T23:59:59Z`;
@@ -19,20 +20,64 @@ document.addEventListener("DOMContentLoaded", async () => {
     totalContrib: document.getElementById("gh-total-contributions"),
     currentStreak: document.getElementById("gh-current-streak"),
     longestStreak: document.getElementById("gh-longest-streak"),
+    streakImage: document.getElementById("gh-streak-image"),
+    streakLink: document.getElementById("gh-streak-link"),
     langBar: document.getElementById("gh-lang-bar"),
     langList: document.getElementById("gh-lang-list"),
     heatMonths: document.getElementById("gh-heat-months"),
     heatGrid: document.getElementById("gh-heat-grid")
   };
 
-  const required = Object.values(els).every(Boolean);
-  if (!required) return;
+  if (!Object.values(els).every(Boolean)) return;
 
   els.title.textContent = `${username}'s GitHub Stats`;
   els.year.textContent = String(currentYear);
 
+  if (els.streakImage && els.streakLink) {
+    const streakUrl = `https://nirzak-streak-stats.vercel.app/?user=${encodeURIComponent(username)}&theme=highcontrast&hide_border=false`;
+    els.streakImage.src = streakUrl;
+    els.streakLink.href = streakUrl;
+  }
+
   const setValue = (node, value) => {
     node.textContent = Number.isFinite(value) ? String(value) : "--";
+  };
+
+  const applyGrade = (grade, score) => {
+    els.grade.textContent = grade || "--";
+    if (!Number.isFinite(score)) return;
+    const radius = 48;
+    const circumference = 2 * Math.PI * radius;
+    const offset = circumference - (Math.max(0, Math.min(100, score)) / 100) * circumference;
+    els.gradeRing.style.strokeDasharray = String(circumference);
+    els.gradeRing.style.strokeDashoffset = String(offset);
+  };
+
+  const applySnapshot = (snap, fromCache = false) => {
+    if (!snap) return;
+    els.year.textContent = String(snap.year || currentYear);
+    setValue(els.stars, snap.totalStars);
+    setValue(els.commits, snap.totalCommits);
+    setValue(els.prs, snap.totalPRs);
+    setValue(els.issues, snap.totalIssues);
+    setValue(els.contributed, snap.contributedRepos);
+    setValue(els.repos, snap.publicRepos);
+    setValue(els.totalContrib, snap.totalContributions);
+    setValue(els.currentStreak, snap.currentStreak);
+    setValue(els.longestStreak, snap.longestStreak);
+    applyGrade(snap.grade, snap.gradeScore);
+
+    if (snap.langBarHtml) els.langBar.innerHTML = snap.langBarHtml;
+    if (snap.langListHtml) els.langList.innerHTML = snap.langListHtml;
+    if (snap.heatMonthsHtml) els.heatMonths.innerHTML = snap.heatMonthsHtml;
+    if (snap.heatGridHtml) els.heatGrid.innerHTML = snap.heatGridHtml;
+
+    if (fromCache) {
+      const time = snap.updatedAt
+        ? new Date(snap.updatedAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+        : "cached";
+      els.updated.textContent = `Showing cached data (${time})`;
+    }
   };
 
   const formatUpdated = () => {
@@ -42,32 +87,38 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const fetchJson = async (url) => {
     const res = await fetch(url, { headers: { Accept: "application/vnd.github+json" } });
-    if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return res.json();
   };
 
-  const fetchPaginated = async (url, maxPages = 10) => {
-    let nextUrl = url;
-    let pages = 0;
-    const all = [];
+  const fetchGenericJson = async (url) => {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  };
 
-    while (nextUrl && pages < maxPages) {
-      const resp = await fetch(nextUrl, { headers: { Accept: "application/vnd.github+json" } });
+  const fetchPaginatedEvents = async (baseUrl, maxPages = 10) => {
+    const all = [];
+    for (let page = 1; page <= maxPages; page += 1) {
+      const resp = await fetch(`${baseUrl}${baseUrl.includes("?") ? "&" : "?"}per_page=100&page=${page}`, {
+        headers: { Accept: "application/vnd.github+json" }
+      });
       if (!resp.ok) break;
       const chunk = await resp.json();
       if (!Array.isArray(chunk) || chunk.length === 0) break;
       all.push(...chunk);
-
-      const link = resp.headers.get("link") || "";
-      const match = link.match(/<([^>]+)>;\s*rel="next"/);
-      nextUrl = match ? match[1] : "";
-      pages += 1;
+      if (chunk.length < 100) break;
     }
-
     return all;
   };
 
-  const dateKey = (iso) => new Date(iso).toISOString().slice(0, 10);
+  const dateKey = (iso) => String(iso).slice(0, 10);
+  const localDateKey = (d) => {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    return `${y}-${m}-${day}`;
+  };
   const rangeDays = (start, end) => {
     const out = [];
     const d = new Date(start);
@@ -89,106 +140,153 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   const calcStreaks = (countsByDate, startDate, endDate) => {
-    const dates = rangeDays(startDate, endDate).map((d) => d.toISOString().slice(0, 10));
+    const days = rangeDays(startDate, endDate).map(localDateKey);
+    let run = 0;
     let longest = 0;
     let current = 0;
-    let run = 0;
-
-    dates.forEach((k) => {
-      const active = (countsByDate[k] || 0) > 0;
-      if (active) {
+    days.forEach((k) => {
+      if ((countsByDate[k] || 0) > 0) {
         run += 1;
         if (run > longest) longest = run;
       } else {
         run = 0;
       }
     });
-
-    for (let i = dates.length - 1; i >= 0; i -= 1) {
-      if ((countsByDate[dates[i]] || 0) > 0) current += 1;
+    for (let i = days.length - 1; i >= 0; i -= 1) {
+      if ((countsByDate[days[i]] || 0) > 0) current += 1;
       else break;
     }
-
-    return { longest, current };
+    return { current, longest };
   };
+
+  const fetchContributionCalendar = async () => {
+    const payload = await fetchGenericJson(`https://github-contributions-api.jogruber.de/v4/${encodeURIComponent(username)}`);
+    const countsByDay = {};
+    const levelsByDay = {};
+    const list = Array.isArray(payload?.contributions) ? payload.contributions : [];
+    list.forEach((item) => {
+      if (!item?.date) return;
+      const key = dateKey(item.date);
+      countsByDay[key] = Number(item?.count || 0);
+      levelsByDay[key] = Math.max(0, Math.min(4, Number(item?.level || 0)));
+    });
+    return {
+      countsByDay,
+      levelsByDay
+    };
+  };
+
+  // Render cached data first (fast + fallback)
+  try {
+    const cachedRaw = localStorage.getItem(cacheKey);
+    if (cachedRaw) applySnapshot(JSON.parse(cachedRaw), true);
+  } catch (_) {
+    // Ignore cache read errors.
+  }
 
   try {
     const repos = await fetchJson(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`);
     const ownRepos = repos.filter((r) => !r.fork);
-    const totalStars = ownRepos.reduce((s, r) => s + (r.stargazers_count || 0), 0);
-    setValue(els.repos, ownRepos.length);
-    setValue(els.stars, totalStars);
+    const totalStars = ownRepos.reduce((sum, r) => sum + (r.stargazers_count || 0), 0);
 
     const languageTotals = {};
     await Promise.all(
-      ownRepos.slice(0, 25).map(async (repo) => {
+      ownRepos.slice(0, 20).map(async (repo) => {
         try {
           const langData = await fetchJson(repo.languages_url);
           Object.entries(langData).forEach(([lang, bytes]) => {
             languageTotals[lang] = (languageTotals[lang] || 0) + Number(bytes || 0);
           });
-        } catch (_) {
-          // Skip individual repo language errors.
-        }
+        } catch (_) {}
       })
     );
 
     const sortedLangs = Object.entries(languageTotals).sort((a, b) => b[1] - a[1]).slice(0, 6);
     const totalLangBytes = sortedLangs.reduce((sum, [, v]) => sum + v, 0) || 1;
-    const langPalette = ["#f0542a", "#dacf49", "#7648b8", "#2a7ec1", "#d18b2f", "#56b870"];
+    const palette = ["#f0542a", "#dacf49", "#7648b8", "#2a7ec1", "#d18b2f", "#56b870"];
 
-    els.langBar.innerHTML = sortedLangs.map(([name, bytes], i) => {
+    const langBarHtml = sortedLangs.map(([, bytes], i) => {
       const pct = (bytes / totalLangBytes) * 100;
-      return `<span class="lang-segment" style="width:${pct.toFixed(2)}%;background:${langPalette[i % langPalette.length]}"></span>`;
+      return `<span class="lang-segment" style="width:${pct.toFixed(2)}%;background:${palette[i % palette.length]}"></span>`;
     }).join("");
-
-    els.langList.innerHTML = sortedLangs.map(([name, bytes], i) => {
+    const langListHtml = sortedLangs.map(([name, bytes], i) => {
       const pct = ((bytes / totalLangBytes) * 100).toFixed(2);
-      return `<div class="lang-item"><span class="lang-dot" style="background:${langPalette[i % langPalette.length]}"></span>${name} ${pct}%</div>`;
+      return `<div class="lang-item"><span class="lang-dot" style="background:${palette[i % palette.length]}"></span>${name} ${pct}%</div>`;
     }).join("");
 
-    const [prSearch, issueSearch] = await Promise.all([
-      fetchJson(`https://api.github.com/search/issues?q=author:${username}+type:pr+created:${currentYear}-01-01..${currentYear}-12-31&per_page=1`),
-      fetchJson(`https://api.github.com/search/issues?q=author:${username}+type:issue+created:${currentYear}-01-01..${currentYear}-12-31&per_page=1`)
-    ]);
-
-    const totalPRs = prSearch.total_count || 0;
-    const totalIssues = issueSearch.total_count || 0;
-    setValue(els.prs, totalPRs);
-    setValue(els.issues, totalIssues);
-
-    const commitDayCounts = {};
+    const events = await fetchPaginatedEvents(`https://api.github.com/users/${username}/events/public`, 10);
+    const eventCountsByDay = {};
     const contributedRepos = new Set();
+    const prIds = new Set();
+    const issueIds = new Set();
     let totalCommits = 0;
 
-    for (const repo of ownRepos.slice(0, 30)) {
-      const commits = await fetchPaginated(
-        `https://api.github.com/repos/${repo.owner.login}/${repo.name}/commits?author=${username}&since=${yearStartIso}&until=${yearEndIso}&per_page=100`,
-        20
-      );
+    const contributionTypes = new Set([
+      "PushEvent",
+      "PullRequestEvent",
+      "IssuesEvent",
+      "PullRequestReviewEvent",
+      "IssueCommentEvent",
+      "CommitCommentEvent",
+      "CreateEvent"
+    ]);
 
-      if (commits.length > 0) contributedRepos.add(repo.full_name);
-      totalCommits += commits.length;
+    events.forEach((ev) => {
+      if (!ev?.created_at) return;
+      const key = dateKey(ev.created_at);
+      if (contributionTypes.has(ev.type)) {
+        eventCountsByDay[key] = (eventCountsByDay[key] || 0) + 1;
+      }
+      if (ev?.repo?.name) contributedRepos.add(ev.repo.name);
 
-      commits.forEach((c) => {
-        const stamp = c?.commit?.author?.date;
-        if (!stamp) return;
-        const key = dateKey(stamp);
-        commitDayCounts[key] = (commitDayCounts[key] || 0) + 1;
-      });
+      const d = new Date(ev.created_at);
+      const inYear = d >= new Date(yearStartIso) && d <= new Date(yearEndIso);
+      if (!inYear) return;
+
+      if (ev.type === "PushEvent") {
+        totalCommits += Number(ev?.payload?.size || ev?.payload?.commits?.length || 0);
+      }
+      if (ev.type === "PullRequestEvent" && ev?.payload?.action === "opened" && ev?.payload?.pull_request?.id) {
+        prIds.add(ev.payload.pull_request.id);
+      }
+      if (ev.type === "IssuesEvent" && ev?.payload?.action === "opened" && ev?.payload?.issue?.id) {
+        issueIds.add(ev.payload.issue.id);
+      }
+    });
+
+    let countsByDay = eventCountsByDay;
+    let levelsByDay = {};
+    try {
+      const calendar = await fetchContributionCalendar();
+      if (Object.keys(calendar.countsByDay).length > 0) {
+        countsByDay = calendar.countsByDay;
+        levelsByDay = calendar.levelsByDay;
+      }
+    } catch (_) {
+      // Keep events-based fallback when calendar API is unavailable.
     }
 
-    setValue(els.commits, totalCommits);
-    setValue(els.contributed, contributedRepos.size);
+    const heatDays = 53 * 7;
+    const heatEnd = new Date();
+    const heatStart = new Date(heatEnd);
+    heatStart.setDate(heatEnd.getDate() - (heatDays - 1));
+    const heatDates = rangeDays(heatStart, heatEnd);
+    const maxDaily = Math.max(1, ...Object.values(countsByDay));
+    const todayKey = localDateKey(new Date());
+    const yearPrefix = `${currentYear}-`;
 
-    const totalContributions = Object.values(commitDayCounts).reduce((s, n) => s + n, 0);
-    setValue(els.totalContrib, totalContributions);
+    const totalContributions = Object.entries(countsByDay)
+      .filter(([k]) => k.startsWith(yearPrefix) && k <= todayKey)
+      .map(([, n]) => Number(n || 0))
+      .reduce((s, n) => s + n, 0);
 
-    const startDate = new Date(`${currentYear}-01-01T00:00:00`);
-    const endDate = new Date();
-    const streaks = calcStreaks(commitDayCounts, startDate, endDate);
-    setValue(els.currentStreak, streaks.current);
-    setValue(els.longestStreak, streaks.longest);
+    const firstContributionDay = Object.entries(countsByDay)
+      .filter(([, n]) => Number(n || 0) > 0)
+      .map(([k]) => new Date(`${k}T00:00:00`))
+      .sort((a, b) => a - b)[0] || heatStart;
+    const streaks = calcStreaks(countsByDay, firstContributionDay, heatEnd);
+    const totalPRs = prIds.size;
+    const totalIssues = issueIds.size;
 
     const gradeScore = Math.min(
       100,
@@ -198,7 +296,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       totalIssues * 1.5 +
       contributedRepos.size * 5
     );
-
     let grade = "C";
     if (gradeScore >= 92) grade = "A+";
     else if (gradeScore >= 84) grade = "A";
@@ -206,55 +303,64 @@ document.addEventListener("DOMContentLoaded", async () => {
     else if (gradeScore >= 68) grade = "B";
     else if (gradeScore >= 58) grade = "C+";
 
-    els.grade.textContent = grade;
-    const radius = 48;
-    const circumference = 2 * Math.PI * radius;
-    const offset = circumference - (Math.max(0, Math.min(100, gradeScore)) / 100) * circumference;
-    els.gradeRing.style.strokeDasharray = String(circumference);
-    els.gradeRing.style.strokeDashoffset = String(offset);
-
-    const daysForHeat = 53 * 7;
-    const heatEnd = new Date();
-    const heatStart = new Date(heatEnd);
-    heatStart.setDate(heatEnd.getDate() - (daysForHeat - 1));
-    const heatDates = rangeDays(heatStart, heatEnd);
-    const maxDaily = Math.max(1, ...Object.values(commitDayCounts));
-
-    els.heatGrid.innerHTML = heatDates.map((d) => {
-      const key = d.toISOString().slice(0, 10);
-      const count = commitDayCounts[key] || 0;
-      const lv = levelFromCount(count, maxDaily);
-      return `<span class="heat-cell lv${lv}" title="${key}: ${count} commits"></span>`;
+    const heatGridHtml = heatDates.map((d) => {
+      const key = localDateKey(d);
+      const count = countsByDay[key] || 0;
+      const lv = Number.isFinite(levelsByDay[key]) ? levelsByDay[key] : levelFromCount(count, maxDaily);
+      return `<span class="heat-cell lv${lv}" title="${key}: ${count} contributions"></span>`;
     }).join("");
 
-    const monthLabels = [];
     const monthMap = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    for (let i = 0; i < 7; i += 1) {
-      const d = new Date();
-      d.setMonth(d.getMonth() - (6 - i));
+    const monthLabels = [];
+    for (let i = 0; i < 12; i += 1) {
+      const d = new Date(heatStart);
+      d.setMonth(heatStart.getMonth() + i);
       monthLabels.push(monthMap[d.getMonth()]);
     }
-    els.heatMonths.innerHTML = monthLabels.map((m) => `<span>${m}</span>`).join("");
+    const heatMonthsHtml = monthLabels.map((m) => `<span>${m}</span>`).join("");
 
-    els.updated.textContent = formatUpdated();
-  } catch (error) {
-    [
-      els.stars,
-      els.commits,
-      els.prs,
-      els.issues,
-      els.contributed,
-      els.repos,
-      els.totalContrib,
-      els.currentStreak,
-      els.longestStreak
-    ].forEach((n) => { n.textContent = "--"; });
+    const snapshot = {
+      year: currentYear,
+      publicRepos: ownRepos.length,
+      totalStars,
+      totalCommits,
+      totalPRs,
+      totalIssues,
+      contributedRepos: contributedRepos.size,
+      totalContributions,
+      currentStreak: streaks.current,
+      longestStreak: streaks.longest,
+      grade,
+      gradeScore,
+      langBarHtml,
+      langListHtml,
+      heatGridHtml,
+      heatMonthsHtml,
+      updatedAt: new Date().toISOString()
+    };
 
-    els.langBar.innerHTML = "";
-    els.langList.innerHTML = '<div class="lang-item">Unavailable</div>';
-    els.heatGrid.innerHTML = "";
-    els.heatMonths.innerHTML = "";
-    els.grade.textContent = "--";
-    els.updated.textContent = "Update failed (rate limit/network).";
+    applySnapshot(snapshot, false);
+    els.updated.textContent = `Updated ${new Date(snapshot.updatedAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`;
+
+    try {
+      localStorage.setItem(cacheKey, JSON.stringify(snapshot));
+    } catch (_) {}
+  } catch (_) {
+    const hasCache = !!localStorage.getItem(cacheKey);
+    if (!hasCache) {
+      [
+        els.stars, els.commits, els.prs, els.issues,
+        els.contributed, els.repos, els.totalContrib,
+        els.currentStreak, els.longestStreak
+      ].forEach((n) => { n.textContent = "--"; });
+      els.langBar.innerHTML = "";
+      els.langList.innerHTML = '<div class="lang-item">Unavailable</div>';
+      els.heatGrid.innerHTML = "";
+      els.heatMonths.innerHTML = "";
+      applyGrade("--", NaN);
+      els.updated.textContent = "Update failed (rate limit/network).";
+    } else {
+      els.updated.textContent = "Live update failed (showing cached data).";
+    }
   }
 });

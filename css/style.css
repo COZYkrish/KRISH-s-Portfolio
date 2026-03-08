@@ -1602,15 +1602,25 @@ footer {
   border-right: 1px solid rgba(255, 255, 255, 0.22);
 }
 
-.streak-ring {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 8px solid #ff9d00;
-  display: grid;
-  place-items: center;
-  margin: 0 auto 0.5rem;
-  box-shadow: 0 0 20px rgba(255, 157, 0, 0.2);
+.streak-image-wrap {
+  margin: 0 auto 0.6rem;
+  max-width: 280px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.streak-image-wrap img {
+  width: 100%;
+  display: block;
+}
+
+.streak-col small {
+  margin-top: 0.25rem;
+  display: block;
+  font-size: 0.9rem;
+  color: #b8c7ef;
 }
 
 .github-bottom-grid {
@@ -1662,7 +1672,7 @@ footer {
 
 .heatmap-months {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 0.25rem;
   margin-bottom: 0.4rem;
   color: #cbd5f5;
@@ -1671,7 +1681,9 @@ footer {
 
 .heatmap-grid {
   display: grid;
+  grid-template-rows: repeat(7, 11px);
   grid-template-columns: repeat(53, 11px);
+  grid-auto-flow: column;
   grid-auto-rows: 11px;
   gap: 3px;
   overflow-x: auto;
