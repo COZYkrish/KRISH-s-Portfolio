@@ -97,6 +97,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     return res.json();
   };
 
+  const fetchYearCommitCount = async (year) => {
+    const query = encodeURIComponent(`author:${username} author-date:${year}-01-01..${year}-12-31`);
+    const data = await fetchJson(`https://api.github.com/search/commits?q=${query}&per_page=1`);
+    return Number(data?.total_count || 0);
+  };
+
   const fetchPaginatedEvents = async (baseUrl, maxPages = 10) => {
     const all = [];
     for (let page = 1; page <= maxPages; page += 1) {
@@ -219,7 +225,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const contributedRepos = new Set();
     const prIds = new Set();
     const issueIds = new Set();
-    let totalCommits = 0;
+    let totalCommitsFromEvents = 0;
 
     const contributionTypes = new Set([
       "PushEvent",
@@ -244,7 +250,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (!inYear) return;
 
       if (ev.type === "PushEvent") {
-        totalCommits += Number(ev?.payload?.size || ev?.payload?.commits?.length || 0);
+        totalCommitsFromEvents += Number(ev?.payload?.size || ev?.payload?.commits?.length || 0);
       }
       if (ev.type === "PullRequestEvent" && ev?.payload?.action === "opened" && ev?.payload?.pull_request?.id) {
         prIds.add(ev.payload.pull_request.id);
@@ -287,6 +293,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     const streaks = calcStreaks(countsByDay, firstContributionDay, heatEnd);
     const totalPRs = prIds.size;
     const totalIssues = issueIds.size;
+    let totalCommits = totalCommitsFromEvents;
+    try {
+      const searchedCount = await fetchYearCommitCount(currentYear);
+      if (Number.isFinite(searchedCount) && searchedCount >= 0) {
+        totalCommits = searchedCount;
+      }
+    } catch (_) {
+      // Keep events-based fallback when commit search is unavailable/rate-limited.
+    }
 
     const gradeScore = Math.min(
       100,
