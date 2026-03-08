@@ -202,18 +202,40 @@ document.addEventListener("DOMContentLoaded", async () => {
     const totalStars = ownRepos.reduce((sum, r) => sum + (r.stargazers_count || 0), 0);
 
     const languageTotals = {};
+    const primaryLanguageTotals = {};
+    ownRepos.forEach((repo) => {
+      if (repo?.language) {
+        primaryLanguageTotals[repo.language] = (primaryLanguageTotals[repo.language] || 0) + 1;
+      }
+    });
+
+    let successfulLanguageFetches = 0;
     await Promise.all(
       ownRepos.slice(0, 20).map(async (repo) => {
         try {
           const langData = await fetchJson(repo.languages_url);
-          Object.entries(langData).forEach(([lang, bytes]) => {
-            languageTotals[lang] = (languageTotals[lang] || 0) + Number(bytes || 0);
-          });
+          const entries = Object.entries(langData || {});
+          if (entries.length > 0) {
+            successfulLanguageFetches += 1;
+            entries.forEach(([lang, bytes]) => {
+              languageTotals[lang] = (languageTotals[lang] || 0) + Number(bytes || 0);
+            });
+          }
         } catch (_) {}
       })
     );
 
-    const sortedLangs = Object.entries(languageTotals).sort((a, b) => b[1] - a[1]).slice(0, 6);
+    let sortedLangs = Object.entries(languageTotals).sort((a, b) => b[1] - a[1]).slice(0, 6);
+    const primarySortedLangs = Object.entries(primaryLanguageTotals).sort((a, b) => b[1] - a[1]).slice(0, 6);
+    const shouldUsePrimaryFallback =
+      successfulLanguageFetches === 0 ||
+      sortedLangs.length === 0 ||
+      (sortedLangs.length === 1 && primarySortedLangs.length > 1);
+
+    if (shouldUsePrimaryFallback) {
+      sortedLangs = primarySortedLangs;
+    }
+
     const totalLangBytes = sortedLangs.reduce((sum, [, v]) => sum + v, 0) || 1;
     const palette = ["#f0542a", "#dacf49", "#7648b8", "#2a7ec1", "#d18b2f", "#56b870"];
 
