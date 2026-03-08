@@ -2854,3 +2854,77 @@ input[type="submit"]:hover {
   }
 }
 
+/* Final override: futuristic View All Skills button */
+.tech-details-wrapper .rainbow-btn {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.95rem 2.1rem;
+  border-radius: 9999px;
+  color: #edf5ff;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: linear-gradient(120deg, #121a3f, #121b4f 45%, #1a2f6b);
+  border: 1px solid rgba(121, 199, 255, 0.62);
+  box-shadow:
+    0 16px 34px rgba(10, 36, 92, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 0 0 0 rgba(74, 222, 255, 0.45);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.tech-details-wrapper .rainbow-btn::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(120deg, rgba(74, 222, 255, 0.16), rgba(129, 140, 248, 0.2), rgba(74, 222, 255, 0.16));
+  opacity: 0.65;
+  z-index: -2;
+}
+
+.tech-details-wrapper .rainbow-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -38%;
+  width: 22%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  transform: skewX(-18deg);
+  animation: skillsButtonSweep 2.5s ease-in-out infinite;
+}
+
+.tech-details-wrapper .rainbow-btn span {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  backdrop-filter: none;
+}
+
+.tech-details-wrapper .rainbow-btn:hover {
+  transform: translateY(-4px) scale(1.03);
+  border-color: rgba(127, 244, 255, 0.95);
+  box-shadow:
+    0 20px 38px rgba(10, 36, 92, 0.68),
+    0 0 24px rgba(74, 222, 255, 0.46);
+}
+
+.tech-details-wrapper .rainbow-btn:active {
+  transform: translateY(-1px) scale(1.01);
+}
+
+@keyframes skillsButtonSweep {
+  0% { left: -38%; }
+  55% { left: 118%; }
+  100% { left: 118%; }
+}
+
