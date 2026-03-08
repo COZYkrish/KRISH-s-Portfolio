@@ -2928,3 +2928,69 @@ input[type="submit"]:hover {
   100% { left: 118%; }
 }
 
+/* Final override: Contact section spacing/layout */
+#contact {
+  scroll-margin-top: 92px;
+  padding-top: 5.5rem;
+  padding-bottom: 5rem;
+}
+
+.contact-wrapper {
+  grid-template-columns: minmax(260px, 0.9fr) minmax(340px, 1.2fr);
+  gap: 2.4rem;
+  align-items: start;
+}
+
+.contact-info {
+  justify-content: flex-start;
+  gap: 1.25rem;
+}
+
+.info-item {
+  align-items: center;
+  margin-bottom: 0.2rem;
+}
+
+.contact-form {
+  transform: none;
+  margin-top: 0;
+  padding: 2.2rem;
+  border-radius: 14px;
+}
+
+.contact-form button {
+  margin-top: 0.8rem;
+}
+
+.whatsapp-card,
+.location-card {
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  #contact {
+    padding-top: 4.5rem;
+    padding-bottom: 4rem;
+  }
+
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+
+  .contact-info {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .info-item {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .whatsapp-card,
+  .location-card {
+    width: 100%;
+  }
+}
+
