@@ -10,18 +10,18 @@
 //         const duration = 1200;
 //         const start = performance.now();
 
-//         const tick = (now) => {
-//             const progress = Math.min((now - start) / duration, 1);
-//             element.textContent = String(Math.floor(progress * target));
-//             if (progress < 1) {
-//                 requestAnimationFrame(tick);
-//             } else {
-//                 element.textContent = String(target);
-//             }
-//         };
+        const tick = (now) => {
+            const progress = Math.min((now - start) / duration, 1);
+            element.textContent = String(Math.floor(progress * target));
+            if (progress < 1) {
+                requestAnimationFrame(tick);
+            } else {
+                element.textContent = String(target);
+            }
+        };
 
-//         requestAnimationFrame(tick);
-//     };
+        requestAnimationFrame(tick);
+    };
 
     const counterObserver = new IntersectionObserver((entries, obs) => {
         entries.forEach((entry) => {
