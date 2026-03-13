@@ -5,10 +5,10 @@
 //     const revealItems = document.querySelectorAll(".reveal");
 //     const shapes = document.querySelectorAll(".bg-shape");
 
-//     const animateCounter = (element) => {
-//         const target = Number(element.dataset.target || "0");
-//         const duration = 1200;
-//         const start = performance.now();
+    const animateCounter = (element) => {
+        const target = Number(element.dataset.target || "0");
+        const duration = 1200;
+        const start = performance.now();
 
         const tick = (now) => {
             const progress = Math.min((now - start) / duration, 1);
