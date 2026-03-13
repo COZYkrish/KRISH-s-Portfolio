@@ -1,6 +1,6 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//     const counters = document.querySelectorAll(".stat-number");
-//     const filterButtons = document.querySelectorAll(".filter-btn");
+document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".stat-number");
+    const filterButtons = document.querySelectorAll(".filter-btn");
     const cards = Array.from(document.querySelectorAll(".project-card"));
     const revealItems = document.querySelectorAll(".reveal");
     const shapes = document.querySelectorAll(".bg-shape");
