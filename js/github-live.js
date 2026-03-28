@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   els.year.textContent = String(currentYear);
 
   if (els.streakImage && els.streakLink) {
-    const streakUrl = `https://nirzak-streak-stats.vercel.app/?user=${encodeURIComponent(username)}&theme=highcontrast&hide_border=false`;
+    const streakUrl = `https://streak-stats.demolab.com/?user=${encodeURIComponent(username)}&theme=highcontrast`;
     els.streakImage.src = streakUrl;
     els.streakLink.href = streakUrl;
   }
