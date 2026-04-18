@@ -45,13 +45,13 @@ document.addEventListener("DOMContentLoaded", () => {
             filterButtons.forEach((btn) => btn.classList.remove("active"));
             button.classList.add("active");
 
-            cards.forEach((card) => {
-                const categories = (card.dataset.category || "").split(" ");
-                const show = filter === "all" || categories.includes(filter);
-                card.classList.toggle("hidden", !show);
-            });
-        });
-    });
+    //         cards.forEach((card) => {
+    //             const categories = (card.dataset.category || "").split(" ");
+    //             const show = filter === "all" || categories.includes(filter);
+    //             card.classList.toggle("hidden", !show);
+    //         });
+    //     });
+    // });
 
     // const revealObserver = new IntersectionObserver((entries) => {
     //     entries.forEach((entry) => {
