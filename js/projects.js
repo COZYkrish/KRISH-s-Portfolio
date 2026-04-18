@@ -73,14 +73,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // document.addEventListener("mousemove", (event) => {
-    //     const xRatio = event.clientX / window.innerWidth;
-    //     const yRatio = event.clientY / window.innerHeight;
+    document.addEventListener("mousemove", (event) => {
+        const xRatio = event.clientX / window.innerWidth;
+        const yRatio = event.clientY / window.innerHeight;
 
-        // shapes.forEach((shape, index) => {
-        //     const offsetX = (xRatio - 0.5) * (8 + index * 4);
-        //     const offsetY = (yRatio - 0.5) * (8 + index * 4);
-        //     shape.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+        shapes.forEach((shape, index) => {
+            const offsetX = (xRatio - 0.5) * (8 + index * 4);
+            const offsetY = (yRatio - 0.5) * (8 + index * 4);
+            shape.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
         });
     });
 });
