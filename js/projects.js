@@ -73,9 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    document.addEventListener("mousemove", (event) => {
-        const xRatio = event.clientX / window.innerWidth;
-        const yRatio = event.clientY / window.innerHeight;
+    // document.addEventListener("mousemove", (event) => {
+    //     const xRatio = event.clientX / window.innerWidth;
+    //     const yRatio = event.clientY / window.innerHeight;
 
         // shapes.forEach((shape, index) => {
         //     const offsetX = (xRatio - 0.5) * (8 + index * 4);
