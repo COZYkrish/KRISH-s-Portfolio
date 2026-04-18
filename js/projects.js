@@ -23,18 +23,18 @@
         requestAnimationFrame(tick);
     };
 
-    // const counterObserver = new IntersectionObserver((entries, obs) => {
-    //     entries.forEach((entry) => {
-    //         if (!entry.isIntersecting) {
-    //             return;
-    //         }
-    //         const stat = entry.target.querySelector(".stat-number");
-    //         if (stat) {
-    //             animateCounter(stat);
-    //         }
-    //         obs.unobserve(entry.target);
-    //     });
-    // }, { threshold: 0.35 });
+    const counterObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+                return;
+            }
+            const stat = entry.target.querySelector(".stat-number");
+            if (stat) {
+                animateCounter(stat);
+            }
+            obs.unobserve(entry.target);
+        });
+    }, { threshold: 0.35 });
 
     document.querySelectorAll(".stat-card").forEach((card) => counterObserver.observe(card));
 
