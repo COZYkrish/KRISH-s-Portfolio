@@ -152,20 +152,25 @@ function initCinematicFeatured() {
 
     // --- DOM References ---
     const scrollSpacer = document.getElementById("featuredScrollSpacer");
-    const featuredCard = document.getElementById("featuredCard");
+    let featuredCard = document.getElementById("featuredCard");
     const dotsContainer = document.getElementById("featuredDots");
     const progressBar = document.getElementById("featuredProgressBar");
+    const prevBtn = document.getElementById("featuredPrevBtn");
+    const nextBtn = document.getElementById("featuredNextBtn");
     const bgGlow = document.querySelector(".featured-bg-glow");
+    const viewport = featuredCard.parentElement;
 
-    if (!scrollSpacer || !featuredCard || !dotsContainer || !progressBar) return;
+    if (!scrollSpacer || !featuredCard || !dotsContainer || !progressBar || !viewport) return;
 
     const projectCount = featuredProjects.length;
     let currentIndex = 0;
     let transitionTimer = null;
+    let featuredCards = [];
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
     const mobileQuery = window.matchMedia("(max-width: 600px)");
-    const usePinnedScroll = true;
+    const useMobileRail = mobileQuery.matches;
+    const usePinnedScroll = !useMobileRail;
     const useLightMotion = prefersReducedMotion;
     const useHeavyScrollEffects = !mobileQuery.matches && !prefersReducedMotion;
 
@@ -174,33 +179,46 @@ function initCinematicFeatured() {
         img.src = project.image;
     });
 
-    // --- Render Card Content ---
-    function renderCard(index) {
-        const project = featuredProjects[index];
-        featuredCard.innerHTML = `
-            <div class="featured-card__glass-highlight"></div>
-            <div class="featured-card__counter">${index + 1} / ${projectCount}</div>
-            <div class="featured-card__image-wrap">
-                <img
-                    class="featured-card__image"
-                    src="${project.image}"
-                    alt="${project.imageAlt}"
-                    loading="eager"
-                    draggable="false"
-                />
-            </div>
-            <div class="featured-card__body">
-                <span class="featured-card__category">${project.category}</span>
-                <h4 class="featured-card__name">${project.name}</h4>
-                <p class="featured-card__desc">${project.description}</p>
-                <div class="featured-card__tech">
-                    ${project.tech.map(t => `<span>${t}</span>`).join("")}
+    function getCardMarkup(project, index, extraClasses = "", attributes = "") {
+        return `
+            <article class="featured-card ${extraClasses}" data-featured-index="${index}" aria-label="${project.name}" ${attributes}>
+                <div class="featured-card__glass-highlight"></div>
+                <div class="featured-card__counter">${index + 1} / ${projectCount}</div>
+                <div class="featured-card__image-wrap">
+                    <img
+                        class="featured-card__image"
+                        src="${project.image}"
+                        alt="${project.imageAlt}"
+                        loading="${index === 0 ? "eager" : "lazy"}"
+                        draggable="false"
+                    />
                 </div>
-                <a class="featured-card__link" href="${project.link}" target="_blank" rel="noopener noreferrer">
-                    View Source <i class="fas fa-arrow-up-right-from-square"></i>
-                </a>
-            </div>
+                <div class="featured-card__body">
+                    <span class="featured-card__category">${project.category}</span>
+                    <h4 class="featured-card__name">${project.name}</h4>
+                    <p class="featured-card__desc">${project.description}</p>
+                    <div class="featured-card__tech">
+                        ${project.tech.map(t => `<span>${t}</span>`).join("")}
+                    </div>
+                    <a class="featured-card__link" href="${project.link}" target="_blank" rel="noopener noreferrer">
+                        View Source <i class="fas fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+            </article>
         `;
+    }
+
+    function renderDesktopDeck() {
+        viewport.innerHTML = featuredProjects
+            .map((project, index) => getCardMarkup(
+                project,
+                index,
+                index === 0 ? "is-active" : "is-exiting",
+                index === 0 ? 'role="region" aria-live="polite"' : 'aria-hidden="true"'
+            ))
+            .join("");
+        featuredCards = Array.from(viewport.querySelectorAll(".featured-card"));
+        featuredCard = featuredCards[0];
     }
 
     // --- Generate Dots ---
@@ -218,6 +236,14 @@ function initCinematicFeatured() {
         });
     }
 
+    function renderMobileRail() {
+        viewport.innerHTML = featuredProjects
+            .map((project, index) => getCardMarkup(project, index, "is-active"))
+            .join("");
+        featuredCards = Array.from(viewport.querySelectorAll(".featured-card"));
+        featuredCard = featuredCards[0];
+    }
+
     // --- Update Dots ---
     function updateDots(activeIdx) {
         const dots = dotsContainer.querySelectorAll(".featured-dot");
@@ -230,6 +256,10 @@ function initCinematicFeatured() {
         if (!usePinnedScroll) {
             progressBar.style.width = `${projectCount > 1 ? (activeIdx / (projectCount - 1)) * 100 : 100}%`;
         }
+        if (prevBtn && nextBtn) {
+            prevBtn.disabled = activeIdx === 0;
+            nextBtn.disabled = activeIdx === projectCount - 1;
+        }
     }
 
     // --- Navigate to a specific project via dot click ---
@@ -237,7 +267,10 @@ function initCinematicFeatured() {
         if (targetIndex === currentIndex || targetIndex < 0 || targetIndex >= projectCount) return;
 
         if (!usePinnedScroll) {
-            transitionToProject(targetIndex);
+            const targetCard = viewport.querySelector(`[data-featured-index="${targetIndex}"]`);
+            targetCard?.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", inline: "center", block: "nearest" });
+            currentIndex = targetIndex;
+            updateDots(currentIndex);
             return;
         }
 
@@ -274,6 +307,14 @@ function initCinematicFeatured() {
         }
     });
 
+    prevBtn?.addEventListener("click", () => {
+        navigateToProject(Math.max(currentIndex - 1, 0));
+    });
+
+    nextBtn?.addEventListener("click", () => {
+        navigateToProject(Math.min(currentIndex + 1, projectCount - 1));
+    });
+
     // --- Card Transition ---
     function transitionToProject(newIndex) {
         if (newIndex === currentIndex || newIndex < 0 || newIndex >= projectCount) return;
@@ -283,46 +324,57 @@ function initCinematicFeatured() {
         const direction = newIndex > currentIndex ? "is-next" : "is-prev";
 
         if (useLightMotion) {
+            const previousCard = featuredCards[currentIndex];
+            const nextCard = featuredCards[newIndex];
+            previousCard?.classList.remove("is-active", "is-entering", "is-next", "is-prev");
+            previousCard?.classList.add("is-exiting");
+            previousCard?.setAttribute("aria-hidden", "true");
             currentIndex = newIndex;
-            renderCard(currentIndex);
+            if (nextCard) {
+                featuredCard = nextCard;
+                featuredCard.classList.remove("is-exiting", "is-entering", "is-next", "is-prev");
+                featuredCard.classList.add("is-active");
+                featuredCard.removeAttribute("aria-hidden");
+                featuredCard.setAttribute("role", "region");
+                featuredCard.setAttribute("aria-live", "polite");
+            }
             updateDots(currentIndex);
             featuredCard.style.transform = "";
-            featuredCard.classList.remove("is-exiting", "is-entering", "is-next", "is-prev");
-            featuredCard.classList.add("is-active");
             return;
         }
 
-        const viewport = featuredCard.parentElement;
-        const outgoingCard = featuredCard.cloneNode(true);
-        outgoingCard.removeAttribute("id");
-        outgoingCard.setAttribute("aria-hidden", "true");
-        outgoingCard.classList.remove("is-active", "is-entering", "is-exiting", "is-next", "is-prev");
-        outgoingCard.classList.add("featured-card--ghost", "is-exiting", direction);
-        outgoingCard.style.transform = "";
+        const previousCard = featuredCards[currentIndex];
+        const nextCard = featuredCards[newIndex];
+        if (!previousCard || !nextCard) return;
 
-        viewport.querySelectorAll(".featured-card--ghost").forEach((ghost) => ghost.remove());
-        viewport.appendChild(outgoingCard);
+        previousCard.classList.remove("is-active", "is-entering", "is-next", "is-prev");
+        previousCard.classList.add("is-exiting", direction);
+        previousCard.setAttribute("aria-hidden", "true");
+        previousCard.removeAttribute("role");
+        previousCard.removeAttribute("aria-live");
 
         currentIndex = newIndex;
-        renderCard(currentIndex);
         updateDots(currentIndex);
 
+        featuredCard = nextCard;
         featuredCard.style.transform = "";
-        featuredCard.classList.remove("is-active", "is-exiting", "is-entering", "is-next", "is-prev");
+        featuredCard.classList.remove("is-active", "is-exiting", "is-next", "is-prev");
+        featuredCard.removeAttribute("aria-hidden");
+        featuredCard.setAttribute("role", "region");
+        featuredCard.setAttribute("aria-live", "polite");
 
         featuredCard.classList.add("is-entering", direction);
         void featuredCard.offsetHeight;
 
         requestAnimationFrame(() => {
-            outgoingCard.classList.add("is-leaving");
             featuredCard.classList.remove("is-entering");
             featuredCard.classList.add("is-active");
         });
 
         transitionTimer = window.setTimeout(() => {
+            previousCard.classList.remove("is-next", "is-prev");
             featuredCard.classList.remove("is-next", "is-prev");
-            outgoingCard.remove();
-        }, 620);
+        }, 420);
     }
 
     // --- Scroll Engine ---
@@ -381,22 +433,24 @@ function initCinematicFeatured() {
     function initTilt() {
         if (!useHeavyScrollEffects || isTouchDevice) return;
 
-        featuredCard.addEventListener("mousemove", (e) => {
-            if (featuredCard.classList.contains("is-entering")) return;
+        viewport.addEventListener("mousemove", (e) => {
+            const activeCard = featuredCards[currentIndex] || featuredCard;
+            if (!activeCard || activeCard.classList.contains("is-entering")) return;
 
-            const rect = featuredCard.getBoundingClientRect();
+            const rect = activeCard.getBoundingClientRect();
             const x = (e.clientX - rect.left) / rect.width;
             const y = (e.clientY - rect.top) / rect.height;
 
             const rotateY = (x - 0.5) * 6;   // ±3 degrees
             const rotateX = (0.5 - y) * 4;    // ±2 degrees
 
-            featuredCard.style.transform =
+            activeCard.style.transform =
                 `rotateY(${rotateY}deg) rotateX(${rotateX}deg) translateZ(0) scale(1)`;
         });
 
-        featuredCard.addEventListener("mouseleave", () => {
-            featuredCard.style.transform = "";
+        viewport.addEventListener("mouseleave", () => {
+            const activeCard = featuredCards[currentIndex] || featuredCard;
+            if (activeCard) activeCard.style.transform = "";
         });
     }
 
@@ -479,34 +533,36 @@ function initCinematicFeatured() {
     }
 
     // --- Initialize ---
-    renderCard(0);
     generateDots();
-    featuredCard.classList.add("is-active");
-    init3DOrbs();
+    if (useMobileRail) {
+        renderMobileRail();
+
+        const mobileCards = Array.from(viewport.querySelectorAll(".featured-card"));
+        const mobileRailObserver = new IntersectionObserver((entries) => {
+            const visibleEntry = entries
+                .filter((entry) => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+            if (!visibleEntry) return;
+
+            currentIndex = Number(visibleEntry.target.dataset.featuredIndex || "0");
+            updateDots(currentIndex);
+        }, {
+            root: viewport,
+            threshold: [0.55, 0.75]
+        });
+
+        mobileCards.forEach((card) => mobileRailObserver.observe(card));
+        updateDots(0);
+    } else {
+        renderDesktopDeck();
+        init3DOrbs();
+    }
 
     if (usePinnedScroll) {
         window.addEventListener("scroll", onScroll, { passive: true });
     }
     initTilt();
-
-    if (!usePinnedScroll) {
-        let touchStartX = 0;
-
-        featuredCard.addEventListener("touchstart", (event) => {
-            touchStartX = event.changedTouches[0].clientX;
-        }, { passive: true });
-
-        featuredCard.addEventListener("touchend", (event) => {
-            const swipeDistance = event.changedTouches[0].clientX - touchStartX;
-            if (Math.abs(swipeDistance) < 45) return;
-
-            const nextIndex = swipeDistance < 0
-                ? Math.min(currentIndex + 1, projectCount - 1)
-                : Math.max(currentIndex - 1, 0);
-
-            transitionToProject(nextIndex);
-        }, { passive: true });
-    }
 
     // Run once on load in case page is already scrolled
     onScroll();

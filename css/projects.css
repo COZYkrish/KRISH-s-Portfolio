@@ -231,6 +231,10 @@ body {
     position: relative;
     height: 500vh;
     margin-bottom: 1.2rem;
+    margin-inline: calc(50% - 50vw);
+    padding-inline: calc(50vw - 50%);
+    background: radial-gradient(circle at 50% 18%, rgba(31, 45, 92, 0.72), rgba(7, 10, 23, 0.96) 42%, #050713 100%);
+    isolation: isolate;
 }
 
 /* Sticky Section — locks in viewport while scrolling through spacer */
@@ -245,6 +249,8 @@ body {
     overflow: hidden;
     padding: 1.5rem 1.25rem;
     z-index: 5;
+    background: radial-gradient(circle at 50% 16%, rgba(33, 47, 95, 0.55), rgba(7, 10, 23, 0.92) 45%, #050713 100%);
+    contain: layout paint;
 }
 
 /* Background Layers for Parallax */
@@ -416,6 +422,7 @@ body {
     align-items: center;
     justify-content: center;
     perspective: 1200px;
+    isolation: isolate;
 }
 
 /* ============================================
@@ -435,10 +442,10 @@ body {
     transform: rotateY(0) rotateX(0) translateZ(0) scale(1);
     opacity: 1;
     transition:
-        transform 0.42s cubic-bezier(0.23, 1, 0.32, 1),
-        opacity 0.28s cubic-bezier(0.23, 1, 0.32, 1),
-        filter 0.28s cubic-bezier(0.23, 1, 0.32, 1),
-        box-shadow 0.5s ease;
+        transform 0.38s cubic-bezier(0.23, 1, 0.32, 1),
+        opacity 0.24s ease,
+        filter 0.24s ease,
+        box-shadow 0.38s ease;
     box-shadow:
         0 24px 60px rgba(0, 0, 0, 0.5),
         0 0 0 1px rgba(255, 255, 255, 0.06),
@@ -448,21 +455,14 @@ body {
     z-index: 2;
 }
 
-.featured-card--ghost {
+.featured-cinematic__viewport .featured-card:not(.is-active) {
     position: absolute;
-    inset: auto;
     top: 0;
-    left: 50%;
-    z-index: 1;
-    width: 100%;
-    max-width: 640px;
-    transform: translateX(-50%) rotateY(0) rotateX(0) translateZ(0) scale(1);
+    left: 0;
+    right: 0;
+    margin-inline: auto;
     pointer-events: none;
-    opacity: 1;
-    transition:
-        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-        opacity 0.45s ease,
-        filter 0.45s ease;
+    visibility: hidden;
 }
 
 /* Iridescent glass border glow */
@@ -506,39 +506,36 @@ body {
 
 /* 3D Transition States */
 .featured-card.is-exiting {
-    transform: rotateY(12deg) translateZ(-150px) scale(0.88) translateX(-8%);
-    opacity: 0.72;
-    filter: blur(2px);
+    transform: translateX(-10%) rotateY(8deg) translateZ(-80px) scale(0.94);
+    opacity: 0;
+    filter: blur(1px);
     pointer-events: none;
+    visibility: hidden;
 }
 
 .featured-card.is-entering {
-    transform: rotateY(-10deg) translateZ(-95px) scale(0.94) translateX(9%);
-    opacity: 0.58;
+    position: relative;
+    left: auto;
+    right: auto;
+    margin-inline: 0;
+    transform: translateX(10%) rotateY(-7deg) translateZ(-60px) scale(0.96);
+    opacity: 0;
     filter: blur(1px);
     pointer-events: none;
+    visibility: visible;
 }
 
 .featured-card.is-entering.is-prev {
-    transform: rotateY(10deg) translateZ(-95px) scale(0.94) translateX(-9%);
-}
-
-.featured-card--ghost.is-leaving.is-next {
-    transform: translateX(-64%) rotateY(14deg) translateZ(-130px) scale(0.9);
-    opacity: 0;
-    filter: blur(5px);
-}
-
-.featured-card--ghost.is-leaving.is-prev {
-    transform: translateX(-36%) rotateY(-14deg) translateZ(-130px) scale(0.9);
-    opacity: 0;
-    filter: blur(5px);
+    transform: translateX(-10%) rotateY(7deg) translateZ(-60px) scale(0.96);
 }
 
 .featured-card.is-active {
     transform: rotateY(0) rotateX(0) translateZ(0) scale(1);
     opacity: 1;
     filter: blur(0);
+    visibility: visible;
+    pointer-events: auto;
+    z-index: 3;
 }
 
 /* Card Image */
@@ -712,6 +709,48 @@ body {
     align-items: center;
 }
 
+.featured-swipe-controls {
+    display: none;
+}
+
+.featured-swipe-btn {
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.07);
+    color: #e9ecff;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease, opacity 0.22s ease;
+}
+
+.featured-swipe-btn:hover {
+    transform: translateY(-2px);
+    border-color: rgba(94, 234, 212, 0.65);
+    background: rgba(94, 234, 212, 0.12);
+}
+
+.featured-swipe-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.42;
+    transform: none;
+}
+
+.featured-swipe-btn:focus-visible {
+    outline: 2px solid #5eead4;
+    outline-offset: 3px;
+}
+
+.featured-swipe-label {
+    color: #dce4ff;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
 .featured-dot {
     width: 10px;
     height: 10px;
@@ -842,18 +881,39 @@ body {
    ============================================ */
 @media (max-width: 600px) {
     .featured-scroll-spacer {
-        height: 260vh;
+        height: auto;
         margin-bottom: 1.4rem;
+        margin-inline: 0;
+        padding-inline: 0;
+        background: transparent;
     }
 
     .featured-cinematic {
-        position: sticky;
-        top: 0;
-        height: 100svh;
-        min-height: 640px;
-        padding: 4.4rem 0 1.1rem;
+        position: relative;
+        top: auto;
+        height: auto;
+        min-height: 0;
+        padding: 0.8rem 0 1rem;
         justify-content: flex-start;
-        overflow: hidden;
+        overflow: visible;
+        background: transparent;
+        contain: none;
+    }
+
+    .featured-cinematic__viewport {
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        gap: 0.85rem;
+        padding: 0 1rem 0.2rem;
+        scrollbar-width: none;
+    }
+
+    .featured-cinematic__viewport::-webkit-scrollbar {
+        display: none;
     }
 
     .featured-cinematic__bg {
@@ -869,6 +929,12 @@ body {
     }
 
     .featured-card {
+        flex: 0 0 min(100%, 390px);
+        scroll-snap-align: center;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        visibility: visible !important;
         border-radius: 16px;
         max-width: min(100%, 390px);
         backdrop-filter: blur(14px) saturate(1.15);
@@ -926,7 +992,23 @@ body {
     }
 
     .featured-cinematic__nav {
-        margin-top: 0.8rem;
+        margin-top: 0.65rem;
+        gap: 0.55rem;
+    }
+
+    .featured-swipe-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.7rem;
+    }
+
+    .featured-swipe-btn {
+        width: 40px;
+        height: 40px;
+        background: rgba(7, 10, 23, 0.55);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
     }
 
     .featured-cinematic__progress {
