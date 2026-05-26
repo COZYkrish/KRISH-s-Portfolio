@@ -18,7 +18,7 @@
 
   document.addEventListener("click", (event) => {
     const anchor = event.target.closest("a");
-    if (!anchor || !isInternalLink(anchor) || reduceMotion) return;
+    if (!anchor || !isInternalLink(anchor) || reduceMotion || window.location.protocol === "file:") return;
 
     event.preventDefault();
     overlay.classList.add("active");

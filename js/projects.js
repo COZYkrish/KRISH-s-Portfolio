@@ -155,8 +155,6 @@ function initCinematicFeatured() {
     let featuredCard = document.getElementById("featuredCard");
     const dotsContainer = document.getElementById("featuredDots");
     const progressBar = document.getElementById("featuredProgressBar");
-    const prevBtn = document.getElementById("featuredPrevBtn");
-    const nextBtn = document.getElementById("featuredNextBtn");
     const bgGlow = document.querySelector(".featured-bg-glow");
     const viewport = featuredCard.parentElement;
 
@@ -256,10 +254,6 @@ function initCinematicFeatured() {
         if (!usePinnedScroll) {
             progressBar.style.width = `${projectCount > 1 ? (activeIdx / (projectCount - 1)) * 100 : 100}%`;
         }
-        if (prevBtn && nextBtn) {
-            prevBtn.disabled = activeIdx === 0;
-            nextBtn.disabled = activeIdx === projectCount - 1;
-        }
     }
 
     // --- Navigate to a specific project via dot click ---
@@ -305,14 +299,6 @@ function initCinematicFeatured() {
             dots[newIdx].focus();
             navigateToProject(newIdx);
         }
-    });
-
-    prevBtn?.addEventListener("click", () => {
-        navigateToProject(Math.max(currentIndex - 1, 0));
-    });
-
-    nextBtn?.addEventListener("click", () => {
-        navigateToProject(Math.min(currentIndex + 1, projectCount - 1));
     });
 
     // --- Card Transition ---
