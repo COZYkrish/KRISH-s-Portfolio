@@ -52,8 +52,8 @@
                     <span class="stat-label">Core Technologies</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-number" data-target="140">0</span>
-                    <span class="stat-label">Creativity</span>
+                    <span class="stat-number" data-target="4">0</span>
+                    <span class="stat-label">Certifications</span>
                 </div>
             </div>
         </div>
@@ -68,68 +68,35 @@
                 <button class="filter-btn" data-filter="java">Java</button>
             </div>
 
-            <section class="spotlight reveal">
-                <div class="spotlight-heading">
-                    <div class="spotlight-badge">Featured Builds</div>
-                    <h3>Top Project Showcase</h3>
-                </div>
-                <div class="spotlight-grid">
-                    <article class="spotlight-card">
-                        <h4>FLOAT - AI Desktop Assistant</h4>
-                        <p>Hands-free AI desktop control with wake-word voice input, Groq-powered intelligence, bilingual support, automation, and an animated tkinter dashboard.</p>
-                        <div class="spotlight-tech">
-                            <span>Python</span><span>Groq API</span><span>Voice AI</span><span>Automation</span>
-                        </div>
-                        <a class="spotlight-link" href="#" target="_blank" rel="noopener noreferrer">
-                            Open Project <i class="fas fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </article>
+            <!-- Cinematic Featured Projects Section -->
+            <div class="featured-scroll-spacer" id="featuredScrollSpacer">
+                <section class="featured-cinematic" id="featuredCinematic" aria-label="Featured Projects">
+                    <div class="featured-cinematic__bg" aria-hidden="true">
+                        <div class="featured-bg-glow"></div>
+                        <div class="featured-bg-grid"></div>
+                    </div>
 
-                    <article class="spotlight-card">
-                        <h4>Smart Complaint Service Platform</h4>
-                        <p>Premium SaaS complaint management platform with real-time updates, advanced analytics, secure workflows, and scalable enterprise architecture.</p>
-                        <div class="spotlight-tech">
-                            <span>React 19</span><span>Node.js</span><span>MongoDB</span><span>Socket.IO</span>
-                        </div>
-                        <a class="spotlight-link" href="https://github.com/COZYkrish/Smart-Complaint-Service-Platform#contributing" target="_blank" rel="noopener noreferrer">
-                            Open Project <i class="fas fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </article>
+                    <div class="featured-cinematic__header">
+                        <span class="featured-badge">Featured Builds</span>
+                        <h3 class="featured-title">Cinematic Project Showcase</h3>
+                    </div>
 
-                    <article class="spotlight-card">
-                        <h4>LuminaBlog</h4>
-                        <p>Production-style MERN blog platform with authentication, publishing, comments, likes, bookmarks, dashboard analytics, uploads, search, and filters.</p>
-                        <div class="spotlight-tech">
-                            <span>React</span><span>Node.js</span><span>MongoDB</span><span>Cloudinary</span>
+                    <div class="featured-cinematic__viewport">
+                        <div class="featured-card" id="featuredCard" role="region" aria-live="polite">
+                            <!-- Content rendered by JavaScript -->
                         </div>
-                        <a class="spotlight-link" href="https://github.com/COZYkrish/BLOG-PLATFORM" target="_blank" rel="noopener noreferrer">
-                            Open Project <i class="fas fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </article>
+                    </div>
 
-                    <article class="spotlight-card">
-                        <h4>Fitness Analyzer</h4>
-                        <p>Flask-based fitness intelligence app with ML predictions, health tracking, analytics dashboards, and a cinematic vanilla JavaScript interface.</p>
-                        <div class="spotlight-tech">
-                            <span>Python</span><span>Flask</span><span>scikit-learn</span><span>Chart.js</span>
+                    <div class="featured-cinematic__nav">
+                        <div class="featured-cinematic__dots" id="featuredDots" role="tablist" aria-label="Featured project navigation">
+                            <!-- Dots generated dynamically -->
                         </div>
-                        <a class="spotlight-link" href="https://github.com/COZYkrish/FITNESS-ANALYZER" target="_blank" rel="noopener noreferrer">
-                            Open Project <i class="fas fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </article>
-
-                    <article class="spotlight-card">
-                        <h4>ShopZone</h4>
-                        <p>Full-stack MERN e-commerce platform with user shopping flows, JWT auth, cart, checkout, order history, and a powerful admin dashboard.</p>
-                        <div class="spotlight-tech">
-                            <span>React</span><span>Express.js</span><span>MongoDB</span><span>JWT</span>
+                        <div class="featured-cinematic__progress">
+                            <div class="featured-progress-bar" id="featuredProgressBar"></div>
                         </div>
-                        <a class="spotlight-link" href="https://github.com/COZYkrish/E-COMMERCE-WEB-APPLICATION" target="_blank" rel="noopener noreferrer">
-                            Open Project <i class="fas fa-arrow-up-right-from-square"></i>
-                        </a>
-                    </article>
-                </div>
-            </section>
+                    </div>
+                </section>
+            </div>
 
             <div class="projects-grid" id="projectsGrid">
                 <article class="project-card reveal" data-category="fullstack">
