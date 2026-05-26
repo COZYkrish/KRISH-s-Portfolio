@@ -1121,3 +1121,154 @@ body {
         opacity: 1;
     }
 }
+
+/* Final mobile layout hardening */
+img,
+video,
+canvas,
+svg {
+    max-width: 100%;
+}
+
+@media (max-width: 900px) {
+    .nav-container {
+        gap: 0.75rem;
+    }
+
+    .nav-title {
+        font-size: 1.35rem;
+        text-align: center;
+    }
+
+    .nav-stats {
+        display: none;
+    }
+
+    .skills-hero {
+        min-height: auto;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 10vw, 2.8rem);
+        overflow-wrap: anywhere;
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1.25rem, 7vw, 1.8rem);
+    }
+
+    .hero-description {
+        margin-inline: auto;
+    }
+
+    .hero-stats {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+        margin-inline: auto;
+    }
+
+    .hero-visual {
+        display: flex;
+        justify-content: center;
+    }
+
+    .matrix-visualization {
+        width: min(78vw, 320px);
+        height: min(78vw, 320px);
+    }
+
+    .skills-grid,
+    .showcase-grid,
+    .demo-grid,
+    .category-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .skill-card,
+    .demo-card,
+    .category-card {
+        max-width: 100%;
+    }
+
+    .tab-buttons {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding-bottom: 0.25rem;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tab-btn {
+        flex: 0 0 auto;
+        min-height: 44px;
+    }
+}
+
+@media (max-width: 520px) {
+    .container,
+    .nav-container,
+    .hero-content {
+        padding-inline: 1rem;
+    }
+
+    .skills-nav {
+        min-height: 64px;
+    }
+
+    .back-btn {
+        min-height: 44px;
+        padding: 0.45rem 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .nav-title {
+        font-size: 1.05rem;
+    }
+
+    .skills-hero,
+    .skills-categories,
+    .skill-showcase {
+        padding-block: 2.75rem;
+    }
+
+    .hero-title {
+        font-size: clamp(1.75rem, 12vw, 2.2rem);
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+    }
+
+    .hero-stats {
+        max-width: 100%;
+    }
+
+    .skill-card {
+        padding: 1rem;
+    }
+
+    .skill-header {
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+
+    .skill-tags,
+    .tool-tags {
+        gap: 0.35rem;
+    }
+
+    .tag {
+        font-size: 0.68rem;
+    }
+
+    .demo-code {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}

@@ -261,15 +261,42 @@ body {
     background: rgba(94, 234, 212, 0.11);
 }
 
+.spotlight-heading {
+    margin-bottom: 1rem;
+}
+
 .spotlight h3 {
     font: 700 1.3rem/1.2 "Sora", sans-serif;
+    margin-bottom: 0;
+}
+
+.spotlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 0.85rem;
+}
+
+.spotlight-card {
+    position: relative;
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.045);
+}
+
+.spotlight-card h4 {
+    font: 700 1rem/1.25 "Sora", sans-serif;
     margin-bottom: 0.45rem;
 }
 
 .spotlight p {
     color: #c8d2f5;
-    max-width: 760px;
+    max-width: 100%;
     margin-bottom: 0.85rem;
+    font-size: 0.9rem;
 }
 
 .spotlight-tech {
@@ -277,6 +304,7 @@ body {
     flex-wrap: wrap;
     gap: 0.4rem;
     margin-bottom: 0.9rem;
+    margin-top: auto;
 }
 
 .spotlight-tech span {
@@ -481,34 +509,133 @@ body {
 }
 
 @media (max-width: 1000px) {
+    .spotlight-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .projects-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 @media (max-width: 760px) {
+    .projects-nav {
+        position: sticky;
+    }
+
     .nav-container {
         grid-template-columns: 1fr auto;
+        gap: 0.65rem;
+        padding: 0.75rem 1rem;
     }
 
     .nav-title {
         display: none;
     }
 
+    .back-btn,
+    .skills-btn {
+        min-height: 44px;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.84rem;
+    }
+
     .projects-hero {
-        padding-top: 3.4rem;
+        padding: 3rem 1rem 1.35rem;
+    }
+
+    .hero-title {
+        font-size: clamp(1.85rem, 11vw, 2.55rem);
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
     }
 
     .hero-stats {
         grid-template-columns: 1fr;
         max-width: 320px;
+        gap: 0.7rem;
+        margin-top: 1.4rem;
+    }
+
+    .projects-section {
+        padding: 1rem 1rem 3rem;
+    }
+
+    .filter-bar {
+        gap: 0.5rem;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 0.2rem;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .filter-btn {
+        flex: 0 0 auto;
+        min-height: 42px;
+        padding: 0.5rem 0.82rem;
+        font-size: 0.88rem;
     }
 
     .projects-grid {
         grid-template-columns: 1fr;
     }
 
+    .spotlight-grid {
+        grid-template-columns: 1fr;
+    }
+
     .spotlight {
         padding: 1.05rem;
+        border-radius: 16px;
+    }
+
+    .spotlight-card {
+        padding: 0.9rem;
+        border-radius: 14px;
+    }
+
+    .project-card {
+        min-height: auto;
+        border-radius: 16px;
+    }
+
+    .project-visual {
+        height: 96px;
+    }
+
+    .project-body h3,
+    .spotlight-card h4 {
+        overflow-wrap: anywhere;
+    }
+}
+
+@media (max-width: 420px) {
+    .nav-container {
+        padding-inline: 0.75rem;
+    }
+
+    .back-btn span,
+    .skills-btn span {
+        display: none;
+    }
+
+    .hero-stats {
+        max-width: none;
+    }
+
+    .spotlight-tech,
+    .stack-tags {
+        gap: 0.32rem;
+    }
+
+    .spotlight-tech span,
+    .stack-tags span {
+        font-size: 0.68rem;
+    }
+
+    .project-body {
+        padding: 0.9rem;
     }
 }
