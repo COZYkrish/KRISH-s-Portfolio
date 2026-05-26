@@ -164,6 +164,8 @@ function initCinematicFeatured() {
     let transitionTimer = null;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    const mobileQuery = window.matchMedia("(max-width: 600px)");
+    const usePinnedScroll = !mobileQuery.matches;
 
     featuredProjects.forEach((project) => {
         const img = new Image();
@@ -223,11 +225,19 @@ function initCinematicFeatured() {
             dot.setAttribute("aria-selected", isActive ? "true" : "false");
             dot.setAttribute("tabindex", isActive ? "0" : "-1");
         });
+        if (!usePinnedScroll) {
+            progressBar.style.width = `${projectCount > 1 ? (activeIdx / (projectCount - 1)) * 100 : 100}%`;
+        }
     }
 
     // --- Navigate to a specific project via dot click ---
     function navigateToProject(targetIndex) {
         if (targetIndex === currentIndex || targetIndex < 0 || targetIndex >= projectCount) return;
+
+        if (!usePinnedScroll) {
+            transitionToProject(targetIndex);
+            return;
+        }
 
         const spacerRect = scrollSpacer.getBoundingClientRect();
         const spacerTop = window.scrollY + spacerRect.top;
@@ -316,6 +326,7 @@ function initCinematicFeatured() {
     let ticking = false;
 
     function onScroll() {
+        if (!usePinnedScroll) return;
         if (ticking) return;
         ticking = true;
 
@@ -388,6 +399,7 @@ function initCinematicFeatured() {
 
     // --- 3D Interactive Background Orbs ---
     function init3DOrbs() {
+        if (!usePinnedScroll || isTouchDevice) return;
         const bgContainer = document.querySelector(".featured-cinematic__bg");
         if (!bgContainer) return;
 
@@ -469,8 +481,29 @@ function initCinematicFeatured() {
     featuredCard.classList.add("is-active");
     init3DOrbs();
 
-    window.addEventListener("scroll", onScroll, { passive: true });
+    if (usePinnedScroll) {
+        window.addEventListener("scroll", onScroll, { passive: true });
+    }
     initTilt();
+
+    if (!usePinnedScroll) {
+        let touchStartX = 0;
+
+        featuredCard.addEventListener("touchstart", (event) => {
+            touchStartX = event.changedTouches[0].clientX;
+        }, { passive: true });
+
+        featuredCard.addEventListener("touchend", (event) => {
+            const swipeDistance = event.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(swipeDistance) < 45) return;
+
+            const nextIndex = swipeDistance < 0
+                ? Math.min(currentIndex + 1, projectCount - 1)
+                : Math.max(currentIndex - 1, 0);
+
+            transitionToProject(nextIndex);
+        }, { passive: true });
+    }
 
     // Run once on load in case page is already scrolled
     onScroll();
