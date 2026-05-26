@@ -165,7 +165,9 @@ function initCinematicFeatured() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
     const mobileQuery = window.matchMedia("(max-width: 600px)");
-    const usePinnedScroll = !mobileQuery.matches;
+    const usePinnedScroll = true;
+    const useLightMotion = prefersReducedMotion;
+    const useHeavyScrollEffects = !mobileQuery.matches && !prefersReducedMotion;
 
     featuredProjects.forEach((project) => {
         const img = new Image();
@@ -242,7 +244,8 @@ function initCinematicFeatured() {
         const spacerRect = scrollSpacer.getBoundingClientRect();
         const spacerTop = window.scrollY + spacerRect.top;
         const scrollableHeight = scrollSpacer.offsetHeight - window.innerHeight;
-        const targetScroll = spacerTop + (targetIndex / projectCount) * scrollableHeight + 10;
+        const targetProgress = projectCount > 1 ? targetIndex / (projectCount - 1) : 0;
+        const targetScroll = spacerTop + targetProgress * scrollableHeight + 10;
 
         window.scrollTo({
             top: targetScroll,
@@ -279,7 +282,7 @@ function initCinematicFeatured() {
 
         const direction = newIndex > currentIndex ? "is-next" : "is-prev";
 
-        if (prefersReducedMotion) {
+        if (useLightMotion) {
             currentIndex = newIndex;
             renderCard(currentIndex);
             updateDots(currentIndex);
@@ -355,14 +358,14 @@ function initCinematicFeatured() {
             }
 
             // Parallax on background glow
-            if (!prefersReducedMotion && bgGlow) {
+            if (useHeavyScrollEffects && bgGlow) {
                 const parallaxX = (progress - 0.5) * 120;
                 const parallaxY = (progress - 0.5) * 60;
                 bgGlow.style.transform = `translate(calc(-50% + ${parallaxX}px), calc(-50% + ${parallaxY}px))`;
             }
 
             // Parallax on project image
-            if (!prefersReducedMotion) {
+            if (useHeavyScrollEffects) {
                 const img = featuredCard.querySelector(".featured-card__image");
                 if (img) {
                     const imgParallaxY = (progress - (currentIndex / projectCount)) * -20;
@@ -376,7 +379,7 @@ function initCinematicFeatured() {
 
     // --- Mouse Tilt Effect (Desktop only) ---
     function initTilt() {
-        if (prefersReducedMotion || isTouchDevice) return;
+        if (!useHeavyScrollEffects || isTouchDevice) return;
 
         featuredCard.addEventListener("mousemove", (e) => {
             if (featuredCard.classList.contains("is-entering")) return;
@@ -399,7 +402,7 @@ function initCinematicFeatured() {
 
     // --- 3D Interactive Background Orbs ---
     function init3DOrbs() {
-        if (!usePinnedScroll || isTouchDevice) return;
+        if (!usePinnedScroll || !useHeavyScrollEffects || isTouchDevice) return;
         const bgContainer = document.querySelector(".featured-cinematic__bg");
         if (!bgContainer) return;
 

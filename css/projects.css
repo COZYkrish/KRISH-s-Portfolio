@@ -842,18 +842,18 @@ body {
    ============================================ */
 @media (max-width: 600px) {
     .featured-scroll-spacer {
-        height: auto;
+        height: 260vh;
         margin-bottom: 1.4rem;
     }
 
     .featured-cinematic {
-        position: relative;
-        top: auto;
-        height: auto;
-        min-height: auto;
-        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        height: 100svh;
+        min-height: 640px;
+        padding: 4.4rem 0 1.1rem;
         justify-content: flex-start;
-        overflow: visible;
+        overflow: hidden;
     }
 
     .featured-cinematic__bg {
@@ -931,6 +931,16 @@ body {
 
     .featured-cinematic__progress {
         width: 140px;
+    }
+
+    .featured-dot {
+        width: 12px;
+        height: 12px;
+    }
+
+    .featured-dot.is-active {
+        width: 14px;
+        height: 14px;
     }
 
     .featured-card__counter {
