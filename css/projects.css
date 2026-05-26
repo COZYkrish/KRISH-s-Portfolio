@@ -298,11 +298,9 @@ body {
     border-radius: 50%;
     will-change: transform;
     transition: transform 0.2s linear;
-    transform: translate3d(
-        calc(var(--orb-parallax-x, 0) * var(--orb-depth, 1) * 1px),
-        calc(var(--orb-parallax-y, 0) * var(--orb-depth, 1) * 1px),
-        calc(var(--orb-z, 0) * 1px)
-    );
+    transform: translate3d(calc(var(--orb-parallax-x, 0) * var(--orb-depth, 1) * 1px),
+            calc(var(--orb-parallax-y, 0) * var(--orb-depth, 1) * 1px),
+            calc(var(--orb-z, 0) * 1px));
 }
 
 .featured-orb--filled {
@@ -324,20 +322,47 @@ body {
 
 /* Floating drift animation */
 @keyframes orbDrift1 {
-    0%, 100% { transform: translate3d(calc(var(--orb-parallax-x, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-parallax-y, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-z, 0) * 1px)) translateY(0) rotate(0deg); }
-    33% { transform: translate3d(calc(var(--orb-parallax-x, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-parallax-y, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-z, 0) * 1px)) translateY(-18px) rotate(4deg); }
-    66% { transform: translate3d(calc(var(--orb-parallax-x, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-parallax-y, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-z, 0) * 1px)) translateY(10px) rotate(-3deg); }
+
+    0%,
+    100% {
+        transform: translate3d(calc(var(--orb-parallax-x, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-parallax-y, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-z, 0) * 1px)) translateY(0) rotate(0deg);
+    }
+
+    33% {
+        transform: translate3d(calc(var(--orb-parallax-x, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-parallax-y, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-z, 0) * 1px)) translateY(-18px) rotate(4deg);
+    }
+
+    66% {
+        transform: translate3d(calc(var(--orb-parallax-x, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-parallax-y, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-z, 0) * 1px)) translateY(10px) rotate(-3deg);
+    }
 }
 
 @keyframes orbDrift2 {
-    0%, 100% { transform: translate3d(calc(var(--orb-parallax-x, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-parallax-y, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-z, 0) * 1px)) translateX(0) rotate(0deg); }
-    50% { transform: translate3d(calc(var(--orb-parallax-x, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-parallax-y, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-z, 0) * 1px)) translateX(15px) rotate(-5deg); }
+
+    0%,
+    100% {
+        transform: translate3d(calc(var(--orb-parallax-x, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-parallax-y, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-z, 0) * 1px)) translateX(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translate3d(calc(var(--orb-parallax-x, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-parallax-y, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-z, 0) * 1px)) translateX(15px) rotate(-5deg);
+    }
 }
 
 @keyframes orbDrift3 {
-    0%, 100% { transform: translate3d(calc(var(--orb-parallax-x, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-parallax-y, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-z, 0) * 1px)) translate(0, 0); }
-    25% { transform: translate3d(calc(var(--orb-parallax-x, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-parallax-y, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-z, 0) * 1px)) translate(12px, -14px); }
-    75% { transform: translate3d(calc(var(--orb-parallax-x, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-parallax-y, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-z, 0) * 1px)) translate(-10px, 8px); }
+
+    0%,
+    100% {
+        transform: translate3d(calc(var(--orb-parallax-x, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-parallax-y, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-z, 0) * 1px)) translate(0, 0);
+    }
+
+    25% {
+        transform: translate3d(calc(var(--orb-parallax-x, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-parallax-y, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-z, 0) * 1px)) translate(12px, -14px);
+    }
+
+    75% {
+        transform: translate3d(calc(var(--orb-parallax-x, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-parallax-y, 0) * var(--orb-depth, 1) * 1px), calc(var(--orb-z, 0) * 1px)) translate(-10px, 8px);
+    }
 }
 
 .featured-orb:nth-child(odd),
@@ -420,6 +445,24 @@ body {
         0 0 40px rgba(94, 234, 212, 0.05),
         inset 0 1px 0 rgba(255, 255, 255, 0.08);
     will-change: transform, opacity, filter;
+    z-index: 2;
+}
+
+.featured-card--ghost {
+    position: absolute;
+    inset: auto;
+    top: 0;
+    left: 50%;
+    z-index: 1;
+    width: 100%;
+    max-width: 640px;
+    transform: translateX(-50%) rotateY(0) rotateX(0) translateZ(0) scale(1);
+    pointer-events: none;
+    opacity: 1;
+    transition:
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.45s ease,
+        filter 0.45s ease;
 }
 
 /* Iridescent glass border glow */
@@ -470,14 +513,26 @@ body {
 }
 
 .featured-card.is-entering {
-    transform: rotateY(-6deg) translateZ(-70px) scale(0.96) translateX(4%);
-    opacity: 0.76;
+    transform: rotateY(-10deg) translateZ(-95px) scale(0.94) translateX(9%);
+    opacity: 0.58;
     filter: blur(1px);
     pointer-events: none;
 }
 
 .featured-card.is-entering.is-prev {
-    transform: rotateY(6deg) translateZ(-70px) scale(0.96) translateX(-4%);
+    transform: rotateY(10deg) translateZ(-95px) scale(0.94) translateX(-9%);
+}
+
+.featured-card--ghost.is-leaving.is-next {
+    transform: translateX(-64%) rotateY(14deg) translateZ(-130px) scale(0.9);
+    opacity: 0;
+    filter: blur(5px);
+}
+
+.featured-card--ghost.is-leaving.is-prev {
+    transform: translateX(-36%) rotateY(-14deg) translateZ(-130px) scale(0.9);
+    opacity: 0;
+    filter: blur(5px);
 }
 
 .featured-card.is-active {
@@ -727,9 +782,17 @@ body {
    KEYFRAMES
    ============================================ */
 @keyframes featuredSweep {
-    0% { transform: translateX(-110%); }
-    40% { transform: translateX(110%); }
-    100% { transform: translateX(110%); }
+    0% {
+        transform: translateX(-110%);
+    }
+
+    40% {
+        transform: translateX(110%);
+    }
+
+    100% {
+        transform: translateX(110%);
+    }
 }
 
 /* ============================================
@@ -899,6 +962,14 @@ body {
         animation: none !important;
         transition: none !important;
     }
+
+    .reveal,
+    .reveal.in-view {
+        opacity: 1 !important;
+        filter: none !important;
+        transform: none !important;
+        transition: none !important;
+    }
 }
 
 
@@ -927,6 +998,8 @@ body {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
+    perspective: 1200px;
+    transform-style: preserve-3d;
 }
 
 .project-card {
@@ -940,7 +1013,15 @@ body {
     min-height: 360px;
     opacity: 1;
     transform: translateY(0);
-    transition: opacity 0.24s ease, transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transition:
+        opacity 0.24s ease,
+        transform 0.24s ease,
+        filter 0.24s ease,
+        border-color 0.24s ease,
+        box-shadow 0.24s ease;
+    will-change: transform, opacity, filter;
 }
 
 .project-card::before {
@@ -954,7 +1035,7 @@ body {
 }
 
 .project-card:hover {
-    transform: translateY(-7px);
+    transform: translateY(-7px) rotateX(1.5deg) rotateY(-1.5deg) translateZ(18px);
     border-color: rgba(96, 165, 250, 0.75);
     box-shadow: var(--glow);
 }
@@ -1005,12 +1086,29 @@ body {
     filter: saturate(1.08) contrast(1.04);
 }
 
-.gradient-1 { background: linear-gradient(120deg, #3b82f6, #22d3ee); }
-.gradient-2 { background: linear-gradient(120deg, #8b5cf6, #f472b6); }
-.gradient-3 { background: linear-gradient(120deg, #0ea5e9, #14b8a6); }
-.gradient-4 { background: linear-gradient(120deg, #4f46e5, #06b6d4); }
-.gradient-5 { background: linear-gradient(120deg, #059669, #10b981); }
-.gradient-6 { background: linear-gradient(120deg, #f59e0b, #ef4444); }
+.gradient-1 {
+    background: linear-gradient(120deg, #3b82f6, #22d3ee);
+}
+
+.gradient-2 {
+    background: linear-gradient(120deg, #8b5cf6, #f472b6);
+}
+
+.gradient-3 {
+    background: linear-gradient(120deg, #0ea5e9, #14b8a6);
+}
+
+.gradient-4 {
+    background: linear-gradient(120deg, #4f46e5, #06b6d4);
+}
+
+.gradient-5 {
+    background: linear-gradient(120deg, #059669, #10b981);
+}
+
+.gradient-6 {
+    background: linear-gradient(120deg, #f59e0b, #ef4444);
+}
 
 .project-body {
     display: flex;
@@ -1062,13 +1160,25 @@ body {
 
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
+    filter: blur(12px);
+    transform:
+        translate3d(var(--reveal-x, 0px), 58px, -90px)
+        rotateX(13deg)
+        rotateY(var(--reveal-rotate, -6deg))
+        scale(0.94);
+    transform-origin: center top;
 }
 
 .reveal.in-view {
     opacity: 1;
-    transform: translateY(0);
-    transition: transform 0.65s ease, opacity 0.65s ease;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) rotateX(0) rotateY(0) scale(1);
+    transition:
+        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+        opacity 0.65s ease var(--reveal-delay, 0ms),
+        filter 0.75s ease var(--reveal-delay, 0ms),
+        border-color 0.24s ease,
+        box-shadow 0.24s ease;
 }
 
 .projects-footer {
@@ -1079,13 +1189,29 @@ body {
 }
 
 @keyframes drift {
-    0%, 100% { transform: translateY(0) translateX(0); }
-    50% { transform: translateY(-20px) translateX(12px); }
+
+    0%,
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+
+    50% {
+        transform: translateY(-20px) translateX(12px);
+    }
 }
 
 @keyframes pulse {
-    0%, 100% { transform: scale(0.92); opacity: 0.45; }
-    50% { transform: scale(1.07); opacity: 0.8; }
+
+    0%,
+    100% {
+        transform: scale(0.92);
+        opacity: 0.45;
+    }
+
+    50% {
+        transform: scale(1.07);
+        opacity: 0.8;
+    }
 }
 
 

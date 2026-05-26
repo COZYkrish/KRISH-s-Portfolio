@@ -53,13 +53,23 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    cards.forEach((card, index) => {
+        card.style.setProperty("--reveal-delay", `${Math.min(index % 3, 2) * 90}ms`);
+        card.style.setProperty("--reveal-rotate", index % 2 === 0 ? "-7deg" : "7deg");
+        card.style.setProperty("--reveal-x", index % 3 === 0 ? "-18px" : index % 3 === 2 ? "18px" : "0px");
+    });
+
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("in-view");
+                revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.16 });
+    }, {
+        threshold: 0.18,
+        rootMargin: "0px 0px -8% 0px"
+    });
 
     revealItems.forEach((item) => revealObserver.observe(item));
 
@@ -258,6 +268,28 @@ function initCinematicFeatured() {
         window.clearTimeout(transitionTimer);
 
         const direction = newIndex > currentIndex ? "is-next" : "is-prev";
+
+        if (prefersReducedMotion) {
+            currentIndex = newIndex;
+            renderCard(currentIndex);
+            updateDots(currentIndex);
+            featuredCard.style.transform = "";
+            featuredCard.classList.remove("is-exiting", "is-entering", "is-next", "is-prev");
+            featuredCard.classList.add("is-active");
+            return;
+        }
+
+        const viewport = featuredCard.parentElement;
+        const outgoingCard = featuredCard.cloneNode(true);
+        outgoingCard.removeAttribute("id");
+        outgoingCard.setAttribute("aria-hidden", "true");
+        outgoingCard.classList.remove("is-active", "is-entering", "is-exiting", "is-next", "is-prev");
+        outgoingCard.classList.add("featured-card--ghost", "is-exiting", direction);
+        outgoingCard.style.transform = "";
+
+        viewport.querySelectorAll(".featured-card--ghost").forEach((ghost) => ghost.remove());
+        viewport.appendChild(outgoingCard);
+
         currentIndex = newIndex;
         renderCard(currentIndex);
         updateDots(currentIndex);
@@ -265,22 +297,19 @@ function initCinematicFeatured() {
         featuredCard.style.transform = "";
         featuredCard.classList.remove("is-active", "is-exiting", "is-entering", "is-next", "is-prev");
 
-        if (prefersReducedMotion) {
-            featuredCard.classList.add("is-active");
-            return;
-        }
-
         featuredCard.classList.add("is-entering", direction);
         void featuredCard.offsetHeight;
 
         requestAnimationFrame(() => {
+            outgoingCard.classList.add("is-leaving");
             featuredCard.classList.remove("is-entering");
             featuredCard.classList.add("is-active");
         });
 
         transitionTimer = window.setTimeout(() => {
             featuredCard.classList.remove("is-next", "is-prev");
-        }, 420);
+            outgoingCard.remove();
+        }, 620);
     }
 
     // --- Scroll Engine ---
